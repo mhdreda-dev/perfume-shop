@@ -118,14 +118,29 @@ function ChartTooltipContent({
   color,
   nameKey,
   labelKey,
-}: React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
-  React.ComponentProps<'div'> & {
-    hideLabel?: boolean
-    hideIndicator?: boolean
-    indicator?: 'line' | 'dot' | 'dashed'
+}: {
+  active?: boolean
+  payload?: Array<{
+    color?: string
+    name?: string
     nameKey?: string
-    labelKey?: string
-  }) {
+    type?: string | number
+    unit?: string | number
+    value?: string | number | Array<string | number>
+    dataKey?: string | number
+  }>
+  className?: string
+  hideLabel?: boolean
+  hideIndicator?: boolean
+  indicator?: 'line' | 'dot' | 'dashed'
+  label?: any
+  labelFormatter?: (value: any) => React.ReactNode
+  labelClassName?: string
+  formatter?: (value: any) => React.ReactNode
+  color?: string
+  nameKey?: string
+  labelKey?: string
+}) {
   const { config } = useChart()
 
   const tooltipLabel = React.useMemo(() => {
