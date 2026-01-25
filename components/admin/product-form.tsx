@@ -6,6 +6,7 @@ import { useState, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { BUSINESS_CONFIG, formatPrice } from "@/lib/constants"
 
 interface ProductFormProps {
   initialData?: {
@@ -93,32 +94,48 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium">Price ($) *</label>
-          <Input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            placeholder="0.00"
-            step="0.01"
-            min="0"
-            required
-            disabled={isLoading}
-          />
+          <label className="text-sm font-medium">
+            Price ({BUSINESS_CONFIG.CURRENCY_SYMBOL}) *
+          </label>
+          <div className="space-y-1">
+            <Input
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              placeholder="0.00"
+              step="1"
+              min="0"
+              required
+              disabled={isLoading}
+            />
+            {formData.price > 0 && (
+              <p className="text-xs text-foreground/60">
+                Preview: {formatPrice(formData.price)}
+              </p>
+            )}
+          </div>
         </div>
 
         <div className="space-y-2">
           <label className="text-sm font-medium">Stock Quantity *</label>
-          <Input
-            type="number"
-            name="stock_quantity"
-            value={formData.stock_quantity}
-            onChange={handleChange}
-            placeholder="0"
-            min="0"
-            required
-            disabled={isLoading}
-          />
+          <div className="space-y-1">
+            <Input
+              type="number"
+              name="stock_quantity"
+              value={formData.stock_quantity}
+              onChange={handleChange}
+              placeholder="0"
+              min="0"
+              required
+              disabled={isLoading}
+            />
+            {formData.price > 0 && formData.stock_quantity > 0 && (
+              <p className="text-xs text-foreground/60">
+                Inventory Value: {formatPrice(formData.price * formData.stock_quantity)}
+              </p>
+            )}
+          </div>
         </div>
 
         <div className="space-y-2">

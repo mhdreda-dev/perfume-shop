@@ -2,9 +2,16 @@ import { type NextRequest, NextResponse } from "next/server"
 import { getPerfumeById, updatePerfume, deletePerfume } from "@/lib/db"
 import { getSession } from "@/lib/session"
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const id = Number.parseInt(params.id)
+    const { id: idParam } = await params
+    const id = Number.parseInt(idParam, 10)
+    
+    // Validate ID is a valid number
+    if (Number.isNaN(id) || id <= 0) {
+      return NextResponse.json({ error: "Invalid product ID" }, { status: 400 })
+    }
+
     const perfume = await getPerfumeById(id)
 
     if (!perfume) {
@@ -18,7 +25,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const session = await getSession()
 
@@ -26,7 +33,14 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const id = Number.parseInt(params.id)
+    const { id: idParam } = await params
+    const id = Number.parseInt(idParam, 10)
+    
+    // Validate ID is a valid number
+    if (Number.isNaN(id) || id <= 0) {
+      return NextResponse.json({ error: "Invalid product ID" }, { status: 400 })
+    }
+
     const body = await request.json()
     const { name, price, stock_quantity, image_url, description, notes } = body
 
@@ -51,7 +65,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const session = await getSession()
 
@@ -59,7 +73,14 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const id = Number.parseInt(params.id)
+    const { id: idParam } = await params
+    const id = Number.parseInt(idParam, 10)
+    
+    // Validate ID is a valid number
+    if (Number.isNaN(id) || id <= 0) {
+      return NextResponse.json({ error: "Invalid product ID" }, { status: 400 })
+    }
+
     await deletePerfume(id)
 
     return NextResponse.json({ success: true }, { status: 200 })

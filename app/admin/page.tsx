@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Trash2, Edit2, Plus, Package, DollarSign, AlertCircle } from "lucide-react"
 import { ProductForm } from "@/components/admin/product-form"
+import { BUSINESS_CONFIG, formatPrice } from "@/lib/constants"
 
 interface Product {
   id: number
@@ -214,7 +215,7 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground/70">Inventory Value</p>
-                  <p className="text-3xl font-bold mt-2 text-primary">${totalValue.toFixed(0)}</p>
+                  <p className="text-3xl font-bold mt-2 text-primary">{formatPrice(totalValue)}</p>
                 </div>
                 <DollarSign className="w-12 h-12 text-primary/20" />
               </div>
@@ -289,7 +290,7 @@ export default function AdminDashboard() {
                           </div>
                         </div>
                       </td>
-                      <td className="py-4 px-6 font-medium">${product.price.toFixed(2)}</td>
+                      <td className="py-4 px-6 font-medium">{formatPrice(product.price)}</td>
                       <td className="py-4 px-6">
                         <span
                           className={
@@ -299,7 +300,7 @@ export default function AdminDashboard() {
                           {product.stock_quantity}
                         </span>
                       </td>
-                      <td className="py-4 px-6">${(product.price * product.stock_quantity).toFixed(2)}</td>
+                      <td className="py-4 px-6">{formatPrice(product.price * product.stock_quantity)}</td>
                       <td className="py-4 px-6">
                         <Badge variant={product.stock_quantity > 0 ? "secondary" : "destructive"}>
                           {product.stock_quantity > 0 ? "In Stock" : "Sold Out"}
