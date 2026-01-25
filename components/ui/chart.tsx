@@ -5,7 +5,7 @@ import * as RechartsPrimitive from 'recharts'
 
 import { cn } from '@/lib/utils'
 
-// Format: { THEME_NAME: CSS_SELECTOR }
+
 const THEMES = { light: '', dark: '.dark' } as const
 
 export type ChartConfig = {
@@ -122,12 +122,17 @@ function ChartTooltipContent({
   active?: boolean
   payload?: Array<{
     color?: string
+    fill?: string
     name?: string
     nameKey?: string
     type?: string | number
     unit?: string | number
     value?: string | number | Array<string | number>
     dataKey?: string | number
+    payload?: {
+      fill?: string
+      [key: string]: any
+    }
   }>
   className?: string
   hideLabel?: boolean
@@ -136,7 +141,7 @@ function ChartTooltipContent({
   label?: any
   labelFormatter?: (value: any, payload?: any) => React.ReactNode
   labelClassName?: string
-  formatter?: (value: any) => React.ReactNode
+  formatter?: (value: any, name?: string, item?: any, index?: number, payload?: any) => React.ReactNode
   color?: string
   nameKey?: string
   labelKey?: string
@@ -197,7 +202,7 @@ function ChartTooltipContent({
         {payload.map((item, index) => {
           const key = `${nameKey || item.name || item.dataKey || 'value'}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
-          const indicatorColor = color || item.payload.fill || item.color
+          const indicatorColor = color || item.payload?.fill || item.color
 
           return (
             <div
