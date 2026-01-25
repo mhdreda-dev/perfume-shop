@@ -19,9 +19,9 @@ export const BUSINESS_CONFIG = {
   
   // Social Media
   INSTAGRAM_HANDLE: "mimi_scentual_bliss",
-  INSTAGRAM_URL: "https://www.instagram.com/mimi_scentual_bliss/",
+  INSTAGRAM_URL: "https://www.instagram.com/mimi_scentual_bliss/profilecard/?igsh=ZmM2dXZjNGw5cnB5",
   TIKTOK_HANDLE: "_mimi_scent",
-  TIKTOK_URL: "https://www.tiktok.com/@_mimi_scent",
+  TIKTOK_URL: "https://www.tiktok.com/@_mimi_scent?_t=ZM-8xvp0x0iMLA&_r=1",
 } as const
 
 export const formatPrice = (price: number): string => {

@@ -92,6 +92,18 @@ export default function Contact() {
               link: `https://wa.me/${BUSINESS_CONFIG.WHATSAPP_NUMBER}`,
             },
             {
+              title: "Instagram",
+              content: `@${BUSINESS_CONFIG.INSTAGRAM_HANDLE}`,
+              description: "Follow us for updates and offers",
+              link: BUSINESS_CONFIG.INSTAGRAM_URL,
+            },
+            {
+              title: "TikTok",
+              content: `@${BUSINESS_CONFIG.TIKTOK_HANDLE}`,
+              description: "Watch our latest videos and trends",
+              link: BUSINESS_CONFIG.TIKTOK_URL,
+            },
+            {
               title: "Location",
               content: BUSINESS_CONFIG.LOCATION_NAME,
               description: BUSINESS_CONFIG.LOCATION_ADDRESS,
