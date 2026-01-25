@@ -16,6 +16,12 @@ export const BUSINESS_CONFIG = {
   CONTACT_EMAIL: "mariamoyin0809@outlook.com",
   LOCATION_ADDRESS: "Opposite Old MTD, Akarigbo Road, Sabo, Sagamu",
   LOCATION_NAME: "Premium Boutique",
+  
+  // Social Media
+  INSTAGRAM_HANDLE: "mimi_scentual_bliss",
+  INSTAGRAM_URL: "https://www.instagram.com/mimi_scentual_bliss/",
+  TIKTOK_HANDLE: "_mimi_scent",
+  TIKTOK_URL: "https://www.tiktok.com/@_mimi_scent",
 } as const
 
 export const formatPrice = (price: number): string => {

@@ -94,7 +94,7 @@ export default function AdminLogin() {
         {/* Demo Info */}
         <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/20 text-sm text-foreground/70">
           <p className="font-semibold mb-2">Demo Credentials:</p>
-          <p>Email: admin@mimi.com</p>
+          <p>Email: ala......@gmail.com</p>
           <p>Password: DemoPass123</p>
         </div>
 

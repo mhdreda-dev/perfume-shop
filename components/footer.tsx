@@ -76,6 +76,26 @@ export function Footer() {
                   📱 WhatsApp: {BUSINESS_CONFIG.WHATSAPP_DISPLAY}
                 </a>
               </p>
+              <p className="opacity-80">
+                <a 
+                  href={BUSINESS_CONFIG.INSTAGRAM_URL}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:opacity-100 hover:underline"
+                >
+                  📸 Instagram: @{BUSINESS_CONFIG.INSTAGRAM_HANDLE}
+                </a>
+              </p>
+              <p className="opacity-80">
+                <a 
+                  href={BUSINESS_CONFIG.TIKTOK_URL}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:opacity-100 hover:underline"
+                >
+                  🎵 TikTok: @{BUSINESS_CONFIG.TIKTOK_HANDLE}
+                </a>
+              </p>
             </div>
           </div>
         </div>
