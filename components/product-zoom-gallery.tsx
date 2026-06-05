@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
-import { getEleganceImage } from "@/lib/local-images"
+import { ELEGANCE_BRAND_IMAGE, getSafeProductImage } from "@/lib/local-images"
 
 type ProductZoomGalleryProps = {
   images: string[]
@@ -15,8 +15,8 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
   const [selectedImage, setSelectedImage] = useState(0)
   const [lens, setLens] = useState({ x: 50, y: 50, visible: false })
   const reduceMotion = useReducedMotion()
-  const safeImages = images.length > 0 ? images.map(() => getEleganceImage()) : [getEleganceImage()]
-  const activeImage = safeImages[selectedImage] || getEleganceImage()
+  const safeImages = images.length > 0 ? images.map((image) => getSafeProductImage(image)) : [ELEGANCE_BRAND_IMAGE]
+  const activeImage = safeImages[selectedImage] || ELEGANCE_BRAND_IMAGE
 
   return (
     <div>
@@ -37,6 +37,9 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
             src={activeImage}
             alt={productName}
             className="h-full w-full object-cover"
+            onError={(event) => {
+              event.currentTarget.src = ELEGANCE_BRAND_IMAGE
+            }}
             initial={reduceMotion ? false : { scale: 1.02, opacity: 0 }}
             animate={reduceMotion ? undefined : { scale: 1, opacity: 1 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -81,7 +84,14 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
             aria-label={`View product image ${index + 1}`}
             whileTap={reduceMotion ? undefined : { scale: 0.96 }}
           >
-            <img src={image} alt="" className="h-full w-full rounded-lg object-cover" />
+            <img
+              src={image}
+              alt=""
+              className="h-full w-full rounded-lg object-cover"
+              onError={(event) => {
+                event.currentTarget.src = ELEGANCE_BRAND_IMAGE
+              }}
+            />
           </motion.button>
         ))}
       </div>

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { formatPrice, getWhatsAppLink } from "@/lib/constants"
-import { getEleganceImage } from "@/lib/local-images"
+import { ELEGANCE_BRAND_IMAGE, getSafeProductImage } from "@/lib/local-images"
 import { motion, useReducedMotion } from "framer-motion"
 import { Eye, ShoppingBag } from "lucide-react"
 
@@ -16,12 +16,12 @@ interface ProductCardProps {
   stock_quantity: number
 }
 
-export function ProductCard({ id, name, price, stock_quantity }: ProductCardProps) {
+export function ProductCard({ id, name, price, image_url, stock_quantity }: ProductCardProps) {
   const isSoldOut = stock_quantity === 0
   const whatsappMessage = `Hi! I'm interested in purchasing ${name} for ${formatPrice(price)}.`
   const whatsappLink = getWhatsAppLink(whatsappMessage)
   const reduceMotion = useReducedMotion()
-  const productImage = getEleganceImage()
+  const productImage = getSafeProductImage(image_url)
 
   return (
     <motion.div
@@ -38,6 +38,9 @@ export function ProductCard({ id, name, price, stock_quantity }: ProductCardProp
           src={productImage}
           alt={name}
           className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+          onError={(event) => {
+            event.currentTarget.src = ELEGANCE_BRAND_IMAGE
+          }}
           whileHover={reduceMotion ? undefined : { scale: 1.08 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         />

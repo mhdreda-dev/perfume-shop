@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { BUSINESS_CONFIG, formatPrice } from "@/lib/constants"
-import { getEleganceImage } from "@/lib/local-images"
+import { ELEGANCE_BRAND_IMAGE, getSafeProductImage } from "@/lib/local-images"
 
 interface ProductFormProps {
   initialData?: {
@@ -157,7 +157,16 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
               disabled={isLoading}
               className="text-sm"
             />
-            {formData.image_url && <img src={getEleganceImage()} alt="preview" className="w-24 h-24 object-cover rounded" />}
+            {formData.image_url && (
+              <img
+                src={getSafeProductImage(formData.image_url)}
+                alt="preview"
+                className="w-24 h-24 object-cover rounded"
+                onError={(event) => {
+                  event.currentTarget.src = ELEGANCE_BRAND_IMAGE
+                }}
+              />
+            )}
           </div>
         </div>
       </div>

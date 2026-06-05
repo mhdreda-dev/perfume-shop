@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Trash2, Edit2, Plus, Package, DollarSign, AlertCircle } from "lucide-react"
 import { ProductForm } from "@/components/admin/product-form"
 import { formatPrice } from "@/lib/constants"
-import { getEleganceImage } from "@/lib/local-images"
+import { ELEGANCE_BRAND_IMAGE, getSafeProductImage } from "@/lib/local-images"
 
 interface Product {
   id: number
@@ -287,9 +287,12 @@ export default function AdminDashboard() {
                       <td className="py-4 px-6">
                         <div className="flex gap-3 items-center">
                           <img
-                            src={getEleganceImage()}
+                            src={getSafeProductImage(product.image_url)}
                             alt={product.name}
                             className="h-12 w-12 rounded-lg border border-border object-cover"
+                            onError={(event) => {
+                              event.currentTarget.src = ELEGANCE_BRAND_IMAGE
+                            }}
                           />
                           <div>
                             <p className="font-medium">{product.name}</p>
