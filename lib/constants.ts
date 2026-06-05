@@ -1,8 +1,8 @@
+
 // Business Configuration
 export const BUSINESS_CONFIG = {
   // WhatsApp Business Number
-  WHATSAPP_NUMBER: "2347030421369",
-  WHATSAPP_DISPLAY: "07030421369",
+  WHATSAPP_NUMBER: "+212 690-126763",
   
   // Brand
   BRAND_NAME: "Elegance Parfum",
@@ -19,7 +19,7 @@ export const BUSINESS_CONFIG = {
   
   // Social Media
   INSTAGRAM_HANDLE: "eleganceparfum",
-  INSTAGRAM_URL: "https://www.instagram.com/eleganceparfum",
+  INSTAGRAM_URL: "https://www.instagram.com/eleganceparfum__2",
   TIKTOK_HANDLE: "eleganceparfum",
   TIKTOK_URL: "https://www.tiktok.com/@eleganceparfum",
 } as const
