@@ -49,7 +49,7 @@ export default function AdminLogin() {
         {/* Logo */}
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Mimi
+            Elegance Parfum
           </h1>
           <p className="text-sm text-foreground/70">Admin Dashboard Login</p>
         </div>
@@ -66,7 +66,7 @@ export default function AdminLogin() {
             <label className="text-sm font-medium">Email</label>
             <Input
               type="email"
-              placeholder="admin@mimi.com"
+              placeholder="admin@eleganceparfum.ma"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

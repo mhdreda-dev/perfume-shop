@@ -6,16 +6,17 @@ import { BUSINESS_CONFIG } from "@/lib/constants"
 import { PageTransition } from "@/components/luxury-motion"
 
 export const metadata: Metadata = {
-  title: `${BUSINESS_CONFIG.BRAND_NAME} – ${BUSINESS_CONFIG.TAGLINE} | Luxury Perfume`,
+  title: `${BUSINESS_CONFIG.BRAND_NAME} | Parfums originaux importés d'Espagne`,
   description:
-    "Discover the essence of luxury with Mimi – Scentual Bliss. Curated fragrances for the sophisticated woman. Premium perfumes in Nigeria.",
+    "Elegance Parfum propose des parfums 100% originaux importés directement d'Espagne pour homme et femme, avec prix en DH, livraison rapide et support WhatsApp.",
   keywords: [
-    "luxury perfume",
-    "fragrance",
-    "Nigeria perfume",
-    "women's perfume",
-    "premium scents",
-    "Sagamu",
+    "Elegance Parfum",
+    "parfum original Maroc",
+    "parfums Espagne",
+    "parfum homme",
+    "parfum femme",
+    "parfum luxe DH",
+    "boutique parfum Maroc",
   ],
   authors: [{ name: BUSINESS_CONFIG.BRAND_NAME }],
   creator: BUSINESS_CONFIG.BRAND_NAME,
@@ -27,18 +28,18 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_NG",
-    url: "https://mimi-scentual.com",
-    siteName: `${BUSINESS_CONFIG.BRAND_NAME} – ${BUSINESS_CONFIG.TAGLINE}`,
-    title: `${BUSINESS_CONFIG.BRAND_NAME} – ${BUSINESS_CONFIG.TAGLINE}`,
+    locale: "fr_MA",
+    url: "https://eleganceparfum.ma",
+    siteName: BUSINESS_CONFIG.BRAND_NAME,
+    title: `${BUSINESS_CONFIG.BRAND_NAME} | Parfums originaux importés d'Espagne`,
     description:
-      "Discover the essence of luxury with Mimi – Scentual Bliss. Curated fragrances for the sophisticated woman.",
+      "Boutique premium de parfums authentiques importés d'Espagne, pour homme et femme, avec livraison rapide et conseil WhatsApp.",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${BUSINESS_CONFIG.BRAND_NAME} – ${BUSINESS_CONFIG.TAGLINE}`,
+    title: `${BUSINESS_CONFIG.BRAND_NAME} | Parfums originaux importés d'Espagne`,
     description:
-      "Discover the essence of luxury with Mimi – Scentual Bliss. Curated fragrances for the sophisticated woman.",
+      "Parfums 100% originaux importés d'Espagne, prix en DH, livraison rapide et support WhatsApp.",
   },
   robots: {
     index: true,
@@ -67,11 +68,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://mimi-scentual.com" />
+        <link rel="canonical" href="https://eleganceparfum.ma" />
       </head>
       <body className="antialiased bg-background text-foreground font-sans">
         <PageTransition>{children}</PageTransition>

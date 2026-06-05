@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { BUSINESS_CONFIG } from "@/lib/constants"
-import { Instagram, MessageCircle, Music2, Sparkles } from "lucide-react"
+import { Instagram, MessageCircle, Sparkles } from "lucide-react"
 import { MotionReveal } from "@/components/luxury-motion"
 
 export function Footer() {
@@ -11,31 +11,38 @@ export function Footer() {
           <div>
             <p className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.28em] text-primary">
               <Sparkles className="h-4 w-4" />
-              Private fragrance house
+              Boutique de parfums de luxe
             </p>
             <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
-              Scentual Bliss, curated with quiet Moroccan luxury.
+              Elegance Parfum, des parfums 100% originaux importés d'Espagne.
             </h2>
           </div>
           <p className="text-sm text-foreground/60 lg:text-right">
-            Boutique perfume ordering, personal guidance, and refined gift-ready selections.
+            Sélection premium pour homme et femme, conseil personnalisé, prix en DH et commande rapide via WhatsApp.
           </p>
         </MotionReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="mb-4 text-2xl font-semibold gold-text">{BUSINESS_CONFIG.BRAND_NAME}</h3>
-            <p className="text-sm text-foreground/70">{BUSINESS_CONFIG.TAGLINE} - luxury Moroccan-inspired fragrances for refined daily rituals.</p>
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-12 w-12 overflow-hidden rounded-full border border-primary/35 bg-white shadow-sm">
+                <img src="/elegance-parfum-logo.jpeg" alt="Elegance Parfum logo" className="h-full w-full object-cover" />
+              </span>
+              <h3 className="text-2xl font-semibold text-foreground">{BUSINESS_CONFIG.BRAND_NAME}</h3>
+            </div>
+            <p className="text-sm text-foreground/70">
+              {BUSINESS_CONFIG.TAGLINE} spécialisée dans les parfums originaux importés directement d'Espagne.
+            </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Explore</h4>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Explorer</h4>
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
                 <Link href="/" className="hover:text-primary">
-                  Home
+                  Accueil
                 </Link>
               </li>
               <li>
@@ -53,16 +60,21 @@ export function Footer() {
 
           {/* Info */}
           <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Maison</h4>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Boutique</h4>
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
                 <Link href="/collection" className="hover:text-primary">
-                  Signature Scents
+                  Parfums homme
+                </Link>
+              </li>
+              <li>
+                <Link href="/collection" className="hover:text-primary">
+                  Parfums femme
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-primary">
-                  Boutique Support
+                  Support boutique
                 </Link>
               </li>
             </ul>
@@ -70,8 +82,8 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Concierge</h4>
-            <p className="mb-3 text-sm text-foreground/70">Follow us for boutique edits, drops, and private fragrance guidance.</p>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Contact</h4>
+            <p className="mb-3 text-sm text-foreground/70">Besoin d'un conseil parfum ? Notre boutique vous accompagne.</p>
             <div className="space-y-3 text-sm">
               <p>
                 <a 
@@ -93,22 +105,12 @@ export function Footer() {
                   <Instagram className="h-4 w-4" /> Instagram: @{BUSINESS_CONFIG.INSTAGRAM_HANDLE}
                 </a>
               </p>
-              <p>
-                <a 
-                  href={BUSINESS_CONFIG.TIKTOK_URL}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-foreground/70 hover:text-primary"
-                >
-                  <Music2 className="h-4 w-4" /> TikTok: @{BUSINESS_CONFIG.TIKTOK_HANDLE}
-                </a>
-              </p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-border pt-8 text-center text-xs uppercase tracking-[0.22em] text-foreground/40">
-          <p>&copy; 2026 {BUSINESS_CONFIG.BRAND_NAME} - {BUSINESS_CONFIG.TAGLINE}. All rights reserved.</p>
+          <p>&copy; 2026 {BUSINESS_CONFIG.BRAND_NAME} - parfums originaux importés d'Espagne. All rights reserved.</p>
         </div>
       </div>
     </footer>

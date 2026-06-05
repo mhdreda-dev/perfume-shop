@@ -1,78 +1,78 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.975 0.018 83);
-  --foreground: oklch(0.24 0.035 54);
-  --card: oklch(0.998 0.006 83 / 0.82);
-  --card-foreground: oklch(0.24 0.035 54);
-  --popover: oklch(0.995 0.009 83);
-  --popover-foreground: oklch(0.24 0.035 54);
-  --primary: oklch(0.72 0.105 82);
-  --primary-foreground: oklch(0.23 0.032 54);
-  --secondary: oklch(0.93 0.032 82);
-  --secondary-foreground: oklch(0.28 0.035 54);
-  --muted: oklch(0.94 0.022 82);
-  --muted-foreground: oklch(0.48 0.03 58);
-  --accent: oklch(0.84 0.065 83);
-  --accent-foreground: oklch(0.23 0.032 54);
+  --background: #faf7f2;
+  --foreground: #2a2a2a;
+  --card: rgb(255 255 255 / 0.78);
+  --card-foreground: #2a2a2a;
+  --popover: #fffdf9;
+  --popover-foreground: #2a2a2a;
+  --primary: #c8a96b;
+  --primary-foreground: #2a2a2a;
+  --secondary: #e8dccb;
+  --secondary-foreground: #2a2a2a;
+  --muted: #f8f4ee;
+  --muted-foreground: #72685c;
+  --accent: #d9bd80;
+  --accent-foreground: #2a2a2a;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.82 0.045 78 / 0.48);
-  --input: oklch(0.99 0.012 83);
-  --ring: oklch(0.72 0.105 82);
+  --border: rgb(200 169 107 / 0.26);
+  --input: #fffdf9;
+  --ring: #c8a96b;
   --chart-1: oklch(0.72 0.105 82);
   --chart-2: oklch(0.84 0.065 83);
   --chart-3: oklch(0.63 0.055 68);
   --chart-4: oklch(0.48 0.04 58);
   --chart-5: oklch(0.93 0.032 82);
   --radius: 0.5rem;
-  --sidebar: oklch(0.99 0.012 83);
-  --sidebar-foreground: oklch(0.24 0.035 54);
-  --sidebar-primary: oklch(0.72 0.105 82);
-  --sidebar-primary-foreground: oklch(0.23 0.032 54);
-  --sidebar-accent: oklch(0.93 0.032 82);
-  --sidebar-accent-foreground: oklch(0.28 0.035 54);
-  --sidebar-border: oklch(0.82 0.045 78 / 0.48);
-  --sidebar-ring: oklch(0.72 0.105 82);
+  --sidebar: #faf7f2;
+  --sidebar-foreground: #2a2a2a;
+  --sidebar-primary: #c8a96b;
+  --sidebar-primary-foreground: #2a2a2a;
+  --sidebar-accent: #e8dccb;
+  --sidebar-accent-foreground: #2a2a2a;
+  --sidebar-border: rgb(200 169 107 / 0.26);
+  --sidebar-ring: #c8a96b;
 }
 
 .dark {
-  --background: oklch(0.975 0.018 83);
-  --foreground: oklch(0.24 0.035 54);
-  --card: oklch(0.998 0.006 83 / 0.82);
-  --card-foreground: oklch(0.24 0.035 54);
-  --popover: oklch(0.995 0.009 83);
-  --popover-foreground: oklch(0.24 0.035 54);
-  --primary: oklch(0.72 0.105 82);
-  --primary-foreground: oklch(0.23 0.032 54);
-  --secondary: oklch(0.93 0.032 82);
-  --secondary-foreground: oklch(0.28 0.035 54);
-  --muted: oklch(0.94 0.022 82);
-  --muted-foreground: oklch(0.48 0.03 58);
-  --accent: oklch(0.84 0.065 83);
-  --accent-foreground: oklch(0.23 0.032 54);
+  --background: #faf7f2;
+  --foreground: #2a2a2a;
+  --card: rgb(255 255 255 / 0.78);
+  --card-foreground: #2a2a2a;
+  --popover: #fffdf9;
+  --popover-foreground: #2a2a2a;
+  --primary: #c8a96b;
+  --primary-foreground: #2a2a2a;
+  --secondary: #e8dccb;
+  --secondary-foreground: #2a2a2a;
+  --muted: #f8f4ee;
+  --muted-foreground: #72685c;
+  --accent: #d9bd80;
+  --accent-foreground: #2a2a2a;
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.82 0.045 78 / 0.48);
-  --input: oklch(0.99 0.012 83);
-  --ring: oklch(0.72 0.105 82);
+  --border: rgb(200 169 107 / 0.26);
+  --input: #fffdf9;
+  --ring: #c8a96b;
   --chart-1: oklch(0.72 0.105 82);
   --chart-2: oklch(0.84 0.065 83);
   --chart-3: oklch(0.63 0.055 68);
   --chart-4: oklch(0.48 0.04 58);
   --chart-5: oklch(0.93 0.032 82);
-  --sidebar: oklch(0.99 0.012 83);
-  --sidebar-foreground: oklch(0.24 0.035 54);
-  --sidebar-primary: oklch(0.72 0.105 82);
-  --sidebar-primary-foreground: oklch(0.23 0.032 54);
-  --sidebar-accent: oklch(0.93 0.032 82);
-  --sidebar-accent-foreground: oklch(0.28 0.035 54);
-  --sidebar-border: oklch(0.82 0.045 78 / 0.48);
-  --sidebar-ring: oklch(0.72 0.105 82);
+  --sidebar: #faf7f2;
+  --sidebar-foreground: #2a2a2a;
+  --sidebar-primary: #c8a96b;
+  --sidebar-primary-foreground: #2a2a2a;
+  --sidebar-accent: #e8dccb;
+  --sidebar-accent-foreground: #2a2a2a;
+  --sidebar-border: rgb(200 169 107 / 0.26);
+  --sidebar-ring: #c8a96b;
 }
 
 @theme inline {
@@ -123,9 +123,9 @@
   body {
     @apply bg-background text-foreground;
     background:
-      radial-gradient(circle at 18% 0%, oklch(0.91 0.06 82 / 0.38), transparent 30rem),
-      radial-gradient(circle at 92% 16%, oklch(0.98 0.035 70 / 0.8), transparent 24rem),
-      linear-gradient(135deg, oklch(0.985 0.018 83), oklch(0.955 0.025 78) 52%, oklch(0.985 0.014 88));
+      radial-gradient(circle at 15% 0%, rgb(232 220 203 / 0.55), transparent 26rem),
+      radial-gradient(circle at 88% 12%, rgb(200 169 107 / 0.16), transparent 24rem),
+      linear-gradient(135deg, #faf7f2, #f8f4ee 48%, #efe5d6);
     min-height: 100vh;
   }
 
@@ -134,7 +134,7 @@
   }
 
   ::selection {
-    background: oklch(0.72 0.105 82 / 0.28);
+    background: rgb(200 169 107 / 0.28);
     color: var(--foreground);
   }
 
@@ -143,12 +143,12 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: oklch(0.96 0.018 83);
+    background: #f8f4ee;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.72 0.105 82 / 0.5);
-    border: 2px solid oklch(0.96 0.018 83);
+    background: rgb(200 169 107 / 0.55);
+    border: 2px solid #f8f4ee;
     border-radius: 999px;
   }
 
@@ -201,7 +201,7 @@
 
   .premium-skeleton::after {
     animation: luxury-shimmer 1.8s infinite;
-    background: linear-gradient(90deg, transparent, oklch(0.72 0.105 82 / 0.14), transparent);
+    background: linear-gradient(90deg, transparent, rgb(200 169 107 / 0.14), transparent);
     content: "";
     inset: 0;
     position: absolute;

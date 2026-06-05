@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Menu, ShoppingBag, X } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
+import { BUSINESS_CONFIG } from "@/lib/constants"
 
 export function Navigation() {
   const pathname = usePathname()
@@ -19,8 +20,8 @@ export function Navigation() {
   }
 
   const links = [
-    { href: "/", label: "Home" },
-    { href: "/collection", label: "Our Collection" },
+    { href: "/", label: "Accueil" },
+    { href: "/collection", label: "Collection" },
     { href: "/contact", label: "Contact" },
   ]
 
@@ -30,13 +31,13 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center rounded-full border border-primary/40 bg-primary/10 font-serif text-lg text-primary">
-              M
+            <span className="h-10 w-10 overflow-hidden rounded-full border border-primary/35 bg-white shadow-sm">
+              <img src="/elegance-parfum-logo.jpeg" alt="Elegance Parfum logo" className="h-full w-full object-cover" />
             </span>
-            <span className="text-2xl font-semibold gold-text">
-              Mimi
+            <span className="text-xl font-semibold text-foreground sm:text-2xl">
+              {BUSINESS_CONFIG.BRAND_NAME}
             </span>
-            <span className="hidden text-xs uppercase tracking-[0.24em] text-muted-foreground sm:inline">Scentual Bliss</span>
+            <span className="hidden text-xs uppercase tracking-[0.22em] text-muted-foreground lg:inline">Import original Espagne</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -106,7 +107,7 @@ export function Navigation() {
                 className="mt-3 flex items-center justify-center gap-2 rounded-lg bg-primary px-3 py-3 text-sm font-medium text-primary-foreground hover:bg-accent"
               >
                 <ShoppingBag className="h-4 w-4" />
-                Shop perfumes
+                Commander
               </Link>
             )}
             {isAdmin && (

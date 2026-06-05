@@ -1,27 +1,27 @@
 // Business Configuration
 export const BUSINESS_CONFIG = {
-  // WhatsApp Business Number (Nigeria: +234 -> 234)
+  // WhatsApp Business Number
   WHATSAPP_NUMBER: "2347030421369",
   WHATSAPP_DISPLAY: "07030421369",
   
   // Brand
-  BRAND_NAME: "Mimi",
-  TAGLINE: "Scentual Bliss",
+  BRAND_NAME: "Elegance Parfum",
+  TAGLINE: "Boutique de parfums de luxe",
   
   // Currency
   CURRENCY_SYMBOL: "DH",
   CURRENCY_CODE: "MAD",
   
   // Contact Information
-  CONTACT_EMAIL: "mariamoyin0809@outlook.com",
-  LOCATION_ADDRESS: "Opposite Old MTD, Akarigbo Road, Sabo, Sagamu",
-  LOCATION_NAME: "Premium Boutique",
+  CONTACT_EMAIL: "contact@eleganceparfum.ma",
+  LOCATION_ADDRESS: "Parfums originaux importés d'Espagne, Maroc",
+  LOCATION_NAME: "Boutique premium",
   
   // Social Media
-  INSTAGRAM_HANDLE: "mimi_scentual_bliss",
-  INSTAGRAM_URL: "https://www.instagram.com/mimi_scentual_bliss/profilecard/?igsh=ZmM2dXZjNGw5cnB5",
-  TIKTOK_HANDLE: "_mimi_scent",
-  TIKTOK_URL: "https://www.tiktok.com/@_mimi_scent?_t=ZM-8xvp0x0iMLA&_r=1",
+  INSTAGRAM_HANDLE: "eleganceparfum",
+  INSTAGRAM_URL: "https://www.instagram.com/eleganceparfum",
+  TIKTOK_HANDLE: "eleganceparfum",
+  TIKTOK_URL: "https://www.tiktok.com/@eleganceparfum",
 } as const
 
 export const formatPrice = (price: number): string => {
