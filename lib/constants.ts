@@ -2,7 +2,7 @@
 // Business Configuration
 export const BUSINESS_CONFIG = {
   // WhatsApp Business Number
-  WHATSAPP_NUMBER: "+212 690-126763",
+  WHATSAPP_NUMBER: "212690126763",
   WHATSAPP_DISPLAY: "+212 690-126763",
   
   // Brand
