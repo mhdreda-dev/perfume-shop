@@ -143,19 +143,19 @@ export default function AdminDashboard() {
   const totalValue = products.reduce((sum, p) => sum + p.price * p.stock_quantity, 0)
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen overflow-x-hidden bg-background">
       <Navigation />
 
-      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+      <main className="mx-auto max-w-7xl overflow-x-hidden px-4 py-7 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
         {/* Header */}
-        <div className="luxury-glass mb-8 flex flex-col justify-between gap-5 rounded-2xl p-6 sm:p-8 md:flex-row md:items-center">
+        <div className="luxury-glass mb-6 flex flex-col justify-between gap-5 rounded-xl p-5 sm:mb-8 sm:rounded-2xl sm:p-8 md:flex-row md:items-center">
           <div>
-            <p className="text-sm uppercase tracking-[0.28em] text-primary">Boutique control room</p>
-            <h1 className="mt-3 text-4xl font-semibold">Admin Dashboard</h1>
-            <p className="mt-2 text-foreground/70">Manage your perfume products and inventory</p>
+            <p className="text-xs uppercase tracking-[0.16em] text-primary sm:text-sm sm:tracking-[0.28em]">Boutique control room</p>
+            <h1 className="mt-3 text-3xl font-semibold sm:text-4xl">Admin Dashboard</h1>
+            <p className="mt-2 text-sm text-foreground/70 sm:text-base">Manage your perfume products and inventory</p>
           </div>
           {!showForm && !editingProduct && (
-            <Button onClick={() => setShowForm(true)} className="gap-2 bg-primary text-primary-foreground hover:bg-accent">
+            <Button onClick={() => setShowForm(true)} className="min-h-11 w-full gap-2 bg-primary text-primary-foreground hover:bg-accent sm:w-auto">
               <Plus className="w-4 h-4" />
               Add Product
             </Button>
@@ -164,7 +164,7 @@ export default function AdminDashboard() {
 
         {/* Success Message */}
         {successMessage && (
-          <div className="mb-6 flex items-center gap-2 rounded-lg border border-emerald-700/20 bg-emerald-50 p-4 text-emerald-800">
+          <div className="mb-6 flex items-center gap-2 rounded-lg border border-emerald-700/20 bg-emerald-50 p-4 text-sm text-emerald-800 sm:text-base">
             <div className="w-2 h-2 rounded-full bg-emerald-700" />
             {successMessage}
           </div>
@@ -172,22 +172,22 @@ export default function AdminDashboard() {
 
         {/* Statistics Cards */}
         {!loading && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <Card className="luxury-glass p-6">
+          <div className="mb-6 grid grid-cols-1 gap-3 min-[390px]:grid-cols-2 sm:mb-8 sm:gap-4 lg:grid-cols-4">
+            <Card className="luxury-glass p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground/70">Total Products</p>
-                  <p className="text-3xl font-bold mt-2">{totalProducts}</p>
+                  <p className="mt-2 text-2xl font-bold sm:text-3xl">{totalProducts}</p>
                 </div>
-                <Package className="w-12 h-12 text-primary/20" />
+                <Package className="h-10 w-10 text-primary/20 sm:h-12 sm:w-12" />
               </div>
             </Card>
 
-            <Card className="luxury-glass p-6">
+            <Card className="luxury-glass p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground/70">In Stock</p>
-                  <p className="mt-2 text-3xl font-bold text-emerald-700">{inStockProducts}</p>
+                  <p className="mt-2 text-2xl font-bold text-emerald-700 sm:text-3xl">{inStockProducts}</p>
                 </div>
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
                   <svg className="h-6 w-6 text-emerald-700" fill="currentColor" viewBox="0 0 20 20">
@@ -201,11 +201,11 @@ export default function AdminDashboard() {
               </div>
             </Card>
 
-            <Card className="luxury-glass p-6">
+            <Card className="luxury-glass p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground/70">Sold Out</p>
-                  <p className="mt-2 text-3xl font-bold text-red-700">{soldOutProducts}</p>
+                  <p className="mt-2 text-2xl font-bold text-red-700 sm:text-3xl">{soldOutProducts}</p>
                 </div>
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
                   <AlertCircle className="w-6 h-6 text-red-700" />
@@ -213,13 +213,13 @@ export default function AdminDashboard() {
               </div>
             </Card>
 
-            <Card className="luxury-glass p-6">
+            <Card className="luxury-glass p-4 sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground/70">Inventory Value</p>
-                  <p className="mt-2 text-3xl font-bold text-primary">{formatPrice(totalValue)}</p>
+                  <p className="mt-2 text-xl font-bold text-primary sm:text-3xl">{formatPrice(totalValue)}</p>
                 </div>
-                <DollarSign className="w-12 h-12 text-primary/20" />
+                <DollarSign className="h-10 w-10 text-primary/20 sm:h-12 sm:w-12" />
               </div>
             </Card>
           </div>
@@ -227,8 +227,8 @@ export default function AdminDashboard() {
 
         {/* Add/Edit Form */}
         {(showForm || editingProduct) && (
-          <Card className="luxury-glass mb-8 p-6">
-            <div className="flex justify-between items-center mb-6">
+          <Card className="luxury-glass mb-8 p-4 sm:p-6">
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-2xl font-semibold">{editingProduct ? "Edit Product" : "Add New Product"}</h2>
               <Button
                 variant="outline"
@@ -236,7 +236,7 @@ export default function AdminDashboard() {
                   setShowForm(false)
                   setEditingProduct(null)
                 }}
-                className="border-primary/25 bg-white/65 hover:bg-secondary/70"
+                className="min-h-10 border-primary/25 bg-white/65 hover:bg-secondary/70"
               >
                 Cancel
               </Button>
@@ -269,22 +269,22 @@ export default function AdminDashboard() {
           </Card>
         ) : (
           <Card className="luxury-glass overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
+            <div className="w-full overflow-x-auto">
+              <table className="min-w-[760px] w-full">
                 <thead>
                   <tr className="border-b border-border bg-white/65">
-                    <th className="text-left py-4 px-6 font-semibold">Product</th>
-                    <th className="text-left py-4 px-6 font-semibold">Price</th>
-                    <th className="text-left py-4 px-6 font-semibold">Stock</th>
-                    <th className="text-left py-4 px-6 font-semibold">Inventory Value</th>
-                    <th className="text-left py-4 px-6 font-semibold">Status</th>
-                    <th className="text-right py-4 px-6 font-semibold">Actions</th>
+                    <th className="px-4 py-4 text-left font-semibold sm:px-6">Product</th>
+                    <th className="px-4 py-4 text-left font-semibold sm:px-6">Price</th>
+                    <th className="px-4 py-4 text-left font-semibold sm:px-6">Stock</th>
+                    <th className="px-4 py-4 text-left font-semibold sm:px-6">Inventory Value</th>
+                    <th className="px-4 py-4 text-left font-semibold sm:px-6">Status</th>
+                    <th className="px-4 py-4 text-right font-semibold sm:px-6">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((product) => (
                     <tr key={product.id} className="border-b border-border transition hover:bg-white/65">
-                      <td className="py-4 px-6">
+                      <td className="px-4 py-4 sm:px-6">
                         <div className="flex gap-3 items-center">
                           <img
                             src={getSafeProductImage(product.image_url)}
@@ -294,14 +294,14 @@ export default function AdminDashboard() {
                               event.currentTarget.src = ELEGANCE_BRAND_IMAGE
                             }}
                           />
-                          <div>
-                            <p className="font-medium">{product.name}</p>
-                            <p className="text-xs text-foreground/60">{product.description}</p>
+                          <div className="min-w-0">
+                            <p className="max-w-[14rem] truncate font-medium">{product.name}</p>
+                            <p className="max-w-[16rem] truncate text-xs text-foreground/60">{product.description}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="py-4 px-6 font-medium">{formatPrice(product.price)}</td>
-                      <td className="py-4 px-6">
+                      <td className="px-4 py-4 font-medium sm:px-6">{formatPrice(product.price)}</td>
+                      <td className="px-4 py-4 sm:px-6">
                         <span
                           className={
                             product.stock_quantity > 0 ? "font-medium text-emerald-700" : "font-medium text-red-700"
@@ -310,19 +310,19 @@ export default function AdminDashboard() {
                           {product.stock_quantity}
                         </span>
                       </td>
-                      <td className="py-4 px-6">{formatPrice(product.price * product.stock_quantity)}</td>
-                      <td className="py-4 px-6">
+                      <td className="px-4 py-4 sm:px-6">{formatPrice(product.price * product.stock_quantity)}</td>
+                      <td className="px-4 py-4 sm:px-6">
                         <Badge variant={product.stock_quantity > 0 ? "secondary" : "destructive"}>
                           {product.stock_quantity > 0 ? "In Stock" : "Sold Out"}
                         </Badge>
                       </td>
-                      <td className="py-4 px-6 text-right">
+                      <td className="px-4 py-4 text-right sm:px-6">
                         <div className="flex justify-end gap-2">
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={() => setEditingProduct(product)}
-                            className="gap-2 border-primary/25 bg-white/65 hover:bg-secondary/70"
+                            className="min-h-9 gap-2 border-primary/25 bg-white/65 hover:bg-secondary/70"
                           >
                             <Edit2 className="w-4 h-4" />
                             <span className="hidden sm:inline">Edit</span>
@@ -331,7 +331,7 @@ export default function AdminDashboard() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleDeleteProduct(product.id)}
-                            className="gap-2 border-destructive/25 bg-white/65 text-destructive hover:bg-destructive/10"
+                            className="min-h-9 gap-2 border-destructive/25 bg-white/65 text-destructive hover:bg-destructive/10"
                           >
                             <Trash2 className="w-4 h-4" />
                             <span className="hidden sm:inline">Delete</span>

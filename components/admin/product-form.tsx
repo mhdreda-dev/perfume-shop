@@ -73,14 +73,14 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 overflow-x-hidden">
       {error && (
         <div className="p-3 bg-destructive/10 border border-destructive/20 rounded text-sm text-destructive">
           {error}
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
           <label className="text-sm font-medium">Product Name *</label>
           <Input
@@ -91,6 +91,7 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
             placeholder="Enter product name"
             required
             disabled={isLoading}
+            className="min-h-11"
           />
         </div>
 
@@ -109,6 +110,7 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
               min="0"
               required
               disabled={isLoading}
+              className="min-h-11"
             />
             {formData.price > 0 && (
               <p className="text-xs text-foreground/60">
@@ -130,6 +132,7 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
               min="0"
               required
               disabled={isLoading}
+              className="min-h-11"
             />
             {formData.price > 0 && formData.stock_quantity > 0 && (
               <p className="text-xs text-foreground/60">
@@ -149,19 +152,20 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
               onChange={handleChange}
               placeholder="https://example.com/image.jpg"
               disabled={isLoading}
+              className="min-h-11"
             />
             <input
               type="file"
               accept="image/*"
               onChange={handleFileChange}
               disabled={isLoading}
-              className="text-sm"
+              className="max-w-full text-sm"
             />
             {formData.image_url && (
               <img
                 src={getSafeProductImage(formData.image_url)}
                 alt="preview"
-                className="w-24 h-24 object-cover rounded"
+                className="h-24 w-24 rounded object-cover"
                 onError={(event) => {
                   event.currentTarget.src = ELEGANCE_BRAND_IMAGE
                 }}

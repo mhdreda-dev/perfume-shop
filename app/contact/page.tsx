@@ -65,19 +65,19 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       <Navigation />
 
-      <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
+      <main className="mx-auto w-full max-w-6xl flex-1 overflow-x-hidden px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-4">Get In Touch</h1>
-          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
+        <div className="mb-10 text-center sm:mb-16">
+          <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Get In Touch</h1>
+          <p className="mx-auto max-w-2xl text-base text-foreground/70 sm:text-xl">
             Have questions about our fragrances? We'd love to hear from you. Reach out and let's connect.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mb-16 md:grid-cols-3 md:gap-8">
           {/* Contact Information */}
           {[
             {
@@ -109,19 +109,19 @@ export default function Contact() {
               description: BUSINESS_CONFIG.LOCATION_ADDRESS,
             },
           ].map((contact) => (
-            <Card key={contact.title} className="p-6 text-center">
+            <Card key={contact.title} className="p-5 text-center sm:p-6">
               <h3 className="text-lg font-semibold mb-2">{contact.title}</h3>
               {contact.link ? (
                 <a 
                   href={contact.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary font-medium mb-2 hover:underline block"
+                  className="mb-2 block break-all font-medium text-primary hover:underline"
                 >
                   {contact.content}
                 </a>
               ) : (
-                <p className="text-primary font-medium mb-2">{contact.content}</p>
+                <p className="mb-2 break-words font-medium text-primary">{contact.content}</p>
               )}
               <p className="text-sm text-foreground/70">{contact.description}</p>
             </Card>
@@ -129,7 +129,7 @@ export default function Contact() {
         </div>
 
         {/* Contact Form */}
-        <Card className="p-8 max-w-2xl mx-auto">
+        <Card className="mx-auto max-w-2xl p-5 sm:p-8">
           <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
 
           {submitted && (
@@ -145,8 +145,8 @@ export default function Contact() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6" noValidate>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium">
                   Full Name <span className="text-destructive">*</span>
@@ -162,7 +162,7 @@ export default function Contact() {
                   disabled={loading}
                   aria-invalid={!!errors.name}
                   aria-describedby={errors.name ? "name-error" : undefined}
-                  className={errors.name ? "border-destructive focus:ring-destructive" : ""}
+                  className={errors.name ? "min-h-11 border-destructive focus:ring-destructive" : "min-h-11"}
                 />
                 {errors.name && (
                   <p id="name-error" className="text-sm text-destructive">
@@ -186,7 +186,7 @@ export default function Contact() {
                   disabled={loading}
                   aria-invalid={!!errors.email}
                   aria-describedby={errors.email ? "email-error" : undefined}
-                  className={errors.email ? "border-destructive focus:ring-destructive" : ""}
+                  className={errors.email ? "min-h-11 border-destructive focus:ring-destructive" : "min-h-11"}
                 />
                 {errors.email && (
                   <p id="email-error" className="text-sm text-destructive">
@@ -206,11 +206,11 @@ export default function Contact() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="+234 (703) 042-1369"
+                placeholder={BUSINESS_CONFIG.WHATSAPP_DISPLAY}
                 disabled={loading}
                 aria-invalid={!!errors.phone}
                 aria-describedby={errors.phone ? "phone-error" : undefined}
-                className={errors.phone ? "border-destructive focus:ring-destructive" : ""}
+                className={errors.phone ? "min-h-11 border-destructive focus:ring-destructive" : "min-h-11"}
               />
               {errors.phone && (
                 <p id="phone-error" className="text-sm text-destructive">
@@ -245,7 +245,7 @@ export default function Contact() {
 
             <Button 
               type="submit" 
-              className="w-full bg-primary hover:bg-primary/90" 
+              className="min-h-11 w-full bg-primary hover:bg-primary/90" 
               disabled={loading}
               aria-busy={loading}
             >

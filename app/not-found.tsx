@@ -7,24 +7,24 @@ import { Footer } from "@/components/footer"
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       <Navigation />
 
-      <main className="flex-1 flex flex-col items-center justify-center px-4 py-20">
-        <div className="text-center space-y-6 max-w-md">
+      <main className="flex flex-1 flex-col items-center justify-center px-4 py-12 sm:py-20">
+        <div className="max-w-md space-y-6 text-center">
           <div>
-            <h1 className="text-6xl font-bold text-primary mb-2">404</h1>
-            <p className="text-4xl font-bold text-foreground mb-2">Page Not Found</p>
-            <p className="text-foreground/70 text-lg">
+            <h1 className="mb-2 text-5xl font-bold text-primary sm:text-6xl">404</h1>
+            <p className="mb-2 text-3xl font-bold text-foreground sm:text-4xl">Page Not Found</p>
+            <p className="text-base text-foreground/70 sm:text-lg">
               The page you're looking for doesn't exist or has been moved.
             </p>
           </div>
 
-          <div className="flex gap-3 justify-center">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+          <div className="grid gap-3 sm:flex sm:justify-center">
+            <Button asChild size="lg" className="min-h-11 bg-primary hover:bg-primary/90">
               <Link href="/">Go Home</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild variant="outline" size="lg" className="min-h-11">
               <Link href="/collection">Browse Collection</Link>
             </Button>
           </div>

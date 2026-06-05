@@ -19,9 +19,9 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
   const activeImage = safeImages[selectedImage] || ELEGANCE_BRAND_IMAGE
 
   return (
-    <div>
+    <div className="w-full overflow-hidden">
       <div
-        className="luxury-glass relative overflow-hidden rounded-2xl p-3"
+        className="luxury-glass relative overflow-hidden rounded-xl p-2 sm:rounded-2xl sm:p-3"
         onMouseMove={(event) => {
           const rect = event.currentTarget.getBoundingClientRect()
           setLens({
@@ -32,7 +32,7 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
         }}
         onMouseLeave={() => setLens((current) => ({ ...current, visible: false }))}
       >
-        <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-secondary/10">
+        <div className="relative aspect-[4/5] max-h-[34rem] overflow-hidden rounded-lg bg-secondary/10 sm:rounded-xl">
           <motion.img
             src={activeImage}
             alt={productName}
@@ -45,7 +45,7 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           />
           <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-foreground/20 to-transparent" />
-          <div className="absolute left-4 top-4 luxury-badge">Gallery</div>
+          <div className="absolute left-3 top-3 luxury-badge sm:left-4 sm:top-4">Gallery</div>
           <div
             className={`pointer-events-none absolute hidden h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/40 shadow-2xl shadow-primary/20 ring-1 ring-primary/20 backdrop-blur-sm transition-opacity duration-200 lg:block ${
               lens.visible ? "opacity-100" : "opacity-0"
@@ -72,13 +72,13 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
         </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-3 gap-3">
+      <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-4 sm:gap-3">
         {safeImages.map((image, index) => (
           <motion.button
             key={`${image}-${index}`}
             type="button"
             onClick={() => setSelectedImage(index)}
-            className={`aspect-square overflow-hidden rounded-xl border bg-white/65 p-1 transition hover:border-primary/60 ${
+            className={`aspect-square overflow-hidden rounded-lg border bg-white/65 p-1 transition hover:border-primary/60 sm:rounded-xl ${
               selectedImage === index ? "border-primary" : "border-border"
             }`}
             aria-label={`View product image ${index + 1}`}
@@ -87,7 +87,7 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
             <img
               src={image}
               alt=""
-              className="h-full w-full rounded-lg object-cover"
+              className="h-full w-full rounded-md object-cover sm:rounded-lg"
               onError={(event) => {
                 event.currentTarget.src = ELEGANCE_BRAND_IMAGE
               }}

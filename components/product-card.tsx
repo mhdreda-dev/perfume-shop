@@ -33,7 +33,7 @@ export function ProductCard({ id, name, price, image_url, stock_quantity }: Prod
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Image Container */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-secondary/10">
+      <div className="relative aspect-[4/5] max-h-[26rem] overflow-hidden bg-secondary/10">
         <motion.img
           src={productImage}
           alt={name}
@@ -63,10 +63,10 @@ export function ProductCard({ id, name, price, image_url, stock_quantity }: Prod
       </div>
 
       {/* Content */}
-      <div className="space-y-4 p-4 sm:p-5">
+      <div className="space-y-3 p-4 sm:space-y-4 sm:p-5">
         <div>
-          <h3 className="mb-2 line-clamp-2 text-xl font-semibold text-foreground">{name}</h3>
-          <p className="text-2xl font-semibold text-primary">{formatPrice(price)}</p>
+          <h3 className="mb-2 line-clamp-2 text-lg font-semibold text-foreground sm:text-xl">{name}</h3>
+          <p className="text-xl font-semibold text-primary sm:text-2xl">{formatPrice(price)}</p>
         </div>
 
         {/* Stock Status */}
@@ -80,14 +80,14 @@ export function ProductCard({ id, name, price, image_url, stock_quantity }: Prod
 
         {/* Actions */}
         <div className="grid grid-cols-2 gap-2">
-          <Button asChild variant="outline" size="sm" className="bg-white/65 hover:bg-secondary/70">
+          <Button asChild variant="outline" size="sm" className="min-h-10 bg-white/65 hover:bg-secondary/70">
             <Link href={`/product/${id}`} className="gap-2">
               <Eye className="h-4 w-4" />
               Details
             </Link>
           </Button>
           {!isSoldOut && (
-            <Button asChild size="sm" className="bg-primary text-primary-foreground hover:bg-accent" disabled={isSoldOut}>
+            <Button asChild size="sm" className="min-h-10 bg-primary text-primary-foreground hover:bg-accent" disabled={isSoldOut}>
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="gap-2">
                 <ShoppingBag className="h-4 w-4" />
                 Order

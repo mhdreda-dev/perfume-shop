@@ -50,9 +50,9 @@ export default function ProductDetails() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="flex min-h-screen flex-col overflow-x-hidden">
         <Navigation />
-        <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 gap-8 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 gap-6 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:px-8">
           <div className="premium-skeleton aspect-[4/5]" />
           <div className="space-y-5">
             <div className="premium-skeleton h-8 w-40" />
@@ -69,7 +69,7 @@ export default function ProductDetails() {
 
   if (error || !product) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="flex min-h-screen flex-col overflow-x-hidden">
         <Navigation />
         <div className="flex-1 flex flex-col items-center justify-center gap-4 px-4 text-center">
           <p className="text-destructive">Product not found</p>
@@ -88,38 +88,38 @@ export default function ProductDetails() {
   const galleryImages = [product.image_url, product.image_url, product.image_url]
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       <Navigation />
 
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-28 pt-10 sm:px-6 lg:px-8 lg:py-14">
+      <main className="mx-auto w-full max-w-7xl flex-1 overflow-x-hidden px-4 pb-24 pt-7 sm:px-6 sm:pt-10 lg:px-8 lg:py-14">
         {/* Breadcrumb */}
-        <div className="mb-8 flex items-center gap-2 text-sm text-foreground/60">
+        <div className="mb-5 flex min-w-0 items-center gap-2 overflow-hidden text-sm text-foreground/60 sm:mb-8">
           <Link href="/collection" className="inline-flex items-center gap-1 hover:text-primary">
             <ChevronLeft className="h-4 w-4" />
             Collection
           </Link>
           <span>/</span>
-          <span className="text-foreground">{product.name}</span>
+          <span className="truncate text-foreground">{product.name}</span>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           {/* Product Image */}
           <MotionReveal className="relative">
             <ProductZoomGallery images={galleryImages} productName={product.name} isSoldOut={isSoldOut} />
           </MotionReveal>
 
           {/* Product Info */}
-          <MotionReveal className="luxury-glass rounded-2xl p-6 sm:p-8 lg:p-10" delay={0.1}>
-          <div className="space-y-8">
+          <MotionReveal className="luxury-glass rounded-xl p-5 sm:rounded-2xl sm:p-8 lg:p-10" delay={0.1}>
+          <div className="space-y-6 sm:space-y-8">
             {/* Header */}
             <div className="space-y-4">
-              <p className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.28em] text-primary">
+              <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-primary sm:text-sm sm:tracking-[0.28em]">
                 <Sparkles className="h-4 w-4" />
                 Signature perfume
               </p>
-              <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">{product.name}</h1>
-              <div className="flex flex-wrap items-center gap-4">
-                <span className="text-3xl font-semibold text-primary">{formatPrice(product.price)}</span>
+              <h1 className="text-3xl font-semibold leading-tight sm:text-5xl">{product.name}</h1>
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                <span className="text-2xl font-semibold text-primary sm:text-3xl">{formatPrice(product.price)}</span>
                 <Badge variant={isSoldOut ? "destructive" : "secondary"} className="border border-primary/20 bg-white/10">
                   {isSoldOut ? "Out of Stock" : `${product.stock_quantity} Available`}
                 </Badge>
@@ -130,7 +130,7 @@ export default function ProductDetails() {
             {product.description && (
               <div className="border-t border-border pt-6">
                 <h2 className="mb-2 text-sm font-semibold uppercase tracking-[0.22em] text-primary">About</h2>
-                <p className="text-foreground/80 leading-relaxed">{product.description}</p>
+                <p className="text-sm leading-relaxed text-foreground/80 sm:text-base">{product.description}</p>
               </div>
             )}
 
@@ -140,7 +140,7 @@ export default function ProductDetails() {
                 <h2 className="mb-2 text-sm font-semibold uppercase tracking-[0.22em] text-primary">
                   Fragrance Notes
                 </h2>
-                <p className="text-foreground/80 leading-relaxed">{product.notes}</p>
+                <p className="text-sm leading-relaxed text-foreground/80 sm:text-base">{product.notes}</p>
               </div>
             )}
 
@@ -148,7 +148,7 @@ export default function ProductDetails() {
             <div className="grid gap-3 pt-2 sm:grid-cols-2">
               {!isSoldOut && (
                 <MotionPress>
-                <Button asChild size="lg" className="bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-accent">
+                <Button asChild size="lg" className="min-h-11 w-full bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-accent">
                   <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="gap-2">
                     <ShoppingBag className="h-4 w-4" />
                     Order via WhatsApp
@@ -157,7 +157,7 @@ export default function ProductDetails() {
                 </MotionPress>
               )}
               <MotionPress>
-              <Button asChild variant="outline" size="lg" className="border-primary/25 bg-white/65 hover:bg-secondary/70">
+              <Button asChild variant="outline" size="lg" className="min-h-11 w-full border-primary/25 bg-white/65 hover:bg-secondary/70">
                 <Link href="/collection">Back to Collection</Link>
               </Button>
               </MotionPress>
@@ -176,7 +176,7 @@ export default function ProductDetails() {
       </main>
 
       {!isSoldOut && (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/85 p-3 backdrop-blur-xl md:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/90 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-xl md:hidden">
           <Button asChild size="lg" className="w-full bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-accent">
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="gap-2">
               <ShoppingBag className="h-4 w-4" />

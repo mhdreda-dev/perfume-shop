@@ -26,15 +26,15 @@ export function Navigation() {
   ]
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/72 backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 w-full overflow-x-hidden border-b border-border bg-background/72 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <span className="h-10 w-10 overflow-hidden rounded-full border border-primary/35 bg-white shadow-sm">
+          <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <span className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-white shadow-sm sm:h-10 sm:w-10">
               <img src="/elegance-parfum-logo.jpeg" alt="Elegance Parfum logo" className="h-full w-full object-cover" />
             </span>
-            <span className="text-xl font-semibold text-foreground sm:text-2xl">
+            <span className="truncate text-lg font-semibold text-foreground min-[390px]:text-xl sm:text-2xl">
               {BUSINESS_CONFIG.BRAND_NAME}
             </span>
             <span className="hidden text-xs uppercase tracking-[0.22em] text-muted-foreground lg:inline">Import original Espagne</span>
