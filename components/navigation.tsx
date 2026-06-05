@@ -4,6 +4,8 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import { Menu, ShoppingBag, X } from "lucide-react"
+import { AnimatePresence, motion } from "framer-motion"
 
 export function Navigation() {
   const pathname = usePathname()
@@ -23,15 +25,18 @@ export function Navigation() {
   ]
 
   return (
-    <nav className="sticky top-0 z-50 bg-background border-b border-border">
+    <nav className="sticky top-0 z-50 border-b border-border bg-background/72 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <Link href="/" className="flex items-center gap-3">
+            <span className="grid h-9 w-9 place-items-center rounded-full border border-primary/40 bg-primary/10 font-serif text-lg text-primary">
+              M
+            </span>
+            <span className="text-2xl font-semibold gold-text">
               Mimi
             </span>
-            <span className="hidden sm:inline text-sm text-muted-foreground">Scentual Bliss</span>
+            <span className="hidden text-xs uppercase tracking-[0.24em] text-muted-foreground sm:inline">Scentual Bliss</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -41,49 +46,78 @@ export function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`relative text-sm font-medium transition-colors hover:text-primary ${
                     pathname === link.href ? "text-primary" : "text-foreground/70"
                   }`}
                 >
                   {link.label}
+                  {pathname === link.href && <span className="absolute -bottom-2 left-0 h-px w-full bg-primary" />}
                 </Link>
               ))}
             {isAdmin && (
-              <Button variant="outline" size="sm" onClick={handleLogout}>
+              <Button variant="outline" size="sm" onClick={handleLogout} className="border-primary/30 bg-white/65 hover:bg-secondary/70">
                 Logout
               </Button>
             )}
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-foreground" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+          <motion.button
+            className="grid h-10 w-10 place-items-center rounded-full border border-border bg-white/65 text-foreground md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={isOpen}
+            whileTap={{ scale: 0.92 }}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </motion.button>
         </div>
 
         {/* Mobile Navigation */}
+        <AnimatePresence>
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-2">
+          <motion.div
+            className="md:hidden pb-4"
+            initial={{ opacity: 0, y: -12, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -12, filter: "blur(8px)" }}
+            transition={{ duration: 0.24 }}
+          >
+            <div className="luxury-glass space-y-2 rounded-2xl p-3">
             {!isAdmin &&
               links.map((link) => (
-                <Link
+                <motion.div key={link.href} whileTap={{ scale: 0.98 }}>
+                  <Link
                   key={link.href}
                   href={link.href}
-                  className="block px-2 py-2 rounded text-sm hover:bg-secondary"
+                  className={`block rounded-lg px-3 py-3 text-sm hover:bg-secondary/70 ${
+                    pathname === link.href ? "bg-primary/10 text-primary" : "text-foreground/75"
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
                 </Link>
+                </motion.div>
               ))}
+            {!isAdmin && (
+              <Link
+                href="/collection"
+                onClick={() => setIsOpen(false)}
+                className="mt-3 flex items-center justify-center gap-2 rounded-lg bg-primary px-3 py-3 text-sm font-medium text-primary-foreground hover:bg-accent"
+              >
+                <ShoppingBag className="h-4 w-4" />
+                Shop perfumes
+              </Link>
+            )}
             {isAdmin && (
-              <button onClick={handleLogout} className="w-full text-left px-2 py-2 rounded text-sm hover:bg-secondary">
+              <button onClick={handleLogout} className="w-full rounded-lg px-3 py-3 text-left text-sm hover:bg-secondary/70">
                 Logout
               </button>
             )}
-          </div>
+            </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
     </nav>
   )

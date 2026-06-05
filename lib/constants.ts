@@ -9,8 +9,8 @@ export const BUSINESS_CONFIG = {
   TAGLINE: "Scentual Bliss",
   
   // Currency
-  CURRENCY_SYMBOL: "₦",
-  CURRENCY_CODE: "NGN",
+  CURRENCY_SYMBOL: "DH",
+  CURRENCY_CODE: "MAD",
   
   // Contact Information
   CONTACT_EMAIL: "mariamoyin0809@outlook.com",
@@ -25,7 +25,7 @@ export const BUSINESS_CONFIG = {
 } as const
 
 export const formatPrice = (price: number): string => {
-  return `${BUSINESS_CONFIG.CURRENCY_SYMBOL}${price.toLocaleString("en-NG")}`
+  return `${price.toLocaleString("fr-MA")} ${BUSINESS_CONFIG.CURRENCY_SYMBOL}`
 }
 
 export const getWhatsAppLink = (message: string): string => {

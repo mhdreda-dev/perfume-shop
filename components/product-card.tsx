@@ -3,7 +3,9 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { BUSINESS_CONFIG, formatPrice, getWhatsAppLink } from "@/lib/constants"
+import { formatPrice, getWhatsAppLink } from "@/lib/constants"
+import { motion, useReducedMotion } from "framer-motion"
+import { Eye, ShoppingBag } from "lucide-react"
 
 interface ProductCardProps {
   id: number
@@ -17,19 +19,38 @@ export function ProductCard({ id, name, price, image_url, stock_quantity }: Prod
   const isSoldOut = stock_quantity === 0
   const whatsappMessage = `Hi! I'm interested in purchasing ${name} for ${formatPrice(price)}.`
   const whatsappLink = getWhatsAppLink(whatsappMessage)
+  const reduceMotion = useReducedMotion()
 
   return (
-    <div className="group bg-card rounded-lg overflow-hidden border border-border hover:shadow-lg transition-all duration-300">
+    <motion.div
+      className="group luxury-glass overflow-hidden rounded-xl transition duration-300 hover:border-primary/45 hover:shadow-primary/10"
+      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      whileHover={reduceMotion ? undefined : { y: -8 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    >
       {/* Image Container */}
-      <div className="relative overflow-hidden bg-secondary/10 aspect-square">
-        <img
+      <div className="relative aspect-[4/5] overflow-hidden bg-secondary/10">
+        <motion.img
           src={image_url || "/placeholder.svg"}
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+          whileHover={reduceMotion ? undefined : { scale: 1.08 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         />
+        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-foreground/25 to-transparent" />
+        {!isSoldOut && (
+          <Badge className="absolute left-3 top-3 border border-primary/30 bg-white/75 text-primary backdrop-blur-md">
+            In Stock
+          </Badge>
+        )}
+        <div className="absolute bottom-3 right-3 rounded-full border border-primary/20 bg-white/75 px-3 py-1 text-xs text-foreground/80 opacity-0 backdrop-blur-md transition duration-300 group-hover:opacity-100">
+          Quick view
+        </div>
         {isSoldOut && (
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <Badge variant="destructive" className="text-lg px-4 py-2">
+          <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+            <Badge variant="destructive" className="px-4 py-2 text-base">
               Sold Out
             </Badge>
           </div>
@@ -37,14 +58,14 @@ export function ProductCard({ id, name, price, image_url, stock_quantity }: Prod
       </div>
 
       {/* Content */}
-      <div className="p-4 space-y-4">
+      <div className="space-y-4 p-4 sm:p-5">
         <div>
-          <h3 className="font-semibold text-lg text-foreground line-clamp-2 mb-2">{name}</h3>
-          <p className="text-2xl font-bold text-primary">{formatPrice(price)}</p>
+          <h3 className="mb-2 line-clamp-2 text-xl font-semibold text-foreground">{name}</h3>
+          <p className="text-2xl font-semibold text-primary">{formatPrice(price)}</p>
         </div>
 
         {/* Stock Status */}
-        <div className="text-sm text-foreground/70">
+        <div className="text-sm text-foreground/60">
           {isSoldOut ? (
             <span className="text-destructive font-medium">Out of Stock</span>
           ) : (
@@ -53,24 +74,28 @@ export function ProductCard({ id, name, price, image_url, stock_quantity }: Prod
         </div>
 
         {/* Actions */}
-        <div className="flex gap-2">
-          <Button asChild variant="outline" size="sm" className="flex-1 bg-transparent">
-            <Link href={`/product/${id}`}>View Details</Link>
+        <div className="grid grid-cols-2 gap-2">
+          <Button asChild variant="outline" size="sm" className="bg-white/65 hover:bg-secondary/70">
+            <Link href={`/product/${id}`} className="gap-2">
+              <Eye className="h-4 w-4" />
+              Details
+            </Link>
           </Button>
           {!isSoldOut && (
-            <Button asChild size="sm" className="flex-1 bg-primary hover:bg-primary/90" disabled={isSoldOut}>
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                Order Now
+            <Button asChild size="sm" className="bg-primary text-primary-foreground hover:bg-accent" disabled={isSoldOut}>
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="gap-2">
+                <ShoppingBag className="h-4 w-4" />
+                Order
               </a>
             </Button>
           )}
           {isSoldOut && (
-            <Button size="sm" disabled className="flex-1">
+            <Button size="sm" disabled>
               Unavailable
             </Button>
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

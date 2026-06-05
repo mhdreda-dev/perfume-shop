@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Trash2, Edit2, Plus, Package, DollarSign, AlertCircle } from "lucide-react"
 import { ProductForm } from "@/components/admin/product-form"
-import { BUSINESS_CONFIG, formatPrice } from "@/lib/constants"
+import { formatPrice } from "@/lib/constants"
 
 interface Product {
   id: number
@@ -145,15 +145,16 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="luxury-glass mb-8 flex flex-col justify-between gap-5 rounded-2xl p-6 sm:p-8 md:flex-row md:items-center">
           <div>
-            <h1 className="text-4xl font-bold">Admin Dashboard</h1>
-            <p className="text-foreground/70 mt-2">Manage your perfume products and inventory</p>
+            <p className="text-sm uppercase tracking-[0.28em] text-primary">Boutique control room</p>
+            <h1 className="mt-3 text-4xl font-semibold">Admin Dashboard</h1>
+            <p className="mt-2 text-foreground/70">Manage your perfume products and inventory</p>
           </div>
           {!showForm && !editingProduct && (
-            <Button onClick={() => setShowForm(true)} className="bg-primary hover:bg-primary/90 gap-2">
+            <Button onClick={() => setShowForm(true)} className="gap-2 bg-primary text-primary-foreground hover:bg-accent">
               <Plus className="w-4 h-4" />
               Add Product
             </Button>
@@ -162,8 +163,8 @@ export default function AdminDashboard() {
 
         {/* Success Message */}
         {successMessage && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-600" />
+          <div className="mb-6 flex items-center gap-2 rounded-lg border border-emerald-700/20 bg-emerald-50 p-4 text-emerald-800">
+            <div className="w-2 h-2 rounded-full bg-emerald-700" />
             {successMessage}
           </div>
         )}
@@ -171,7 +172,7 @@ export default function AdminDashboard() {
         {/* Statistics Cards */}
         {!loading && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <Card className="p-6">
+            <Card className="luxury-glass p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground/70">Total Products</p>
@@ -181,14 +182,14 @@ export default function AdminDashboard() {
               </div>
             </Card>
 
-            <Card className="p-6">
+            <Card className="luxury-glass p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground/70">In Stock</p>
-                  <p className="text-3xl font-bold mt-2 text-green-600">{inStockProducts}</p>
+                  <p className="mt-2 text-3xl font-bold text-emerald-700">{inStockProducts}</p>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+                  <svg className="h-6 w-6 text-emerald-700" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -199,23 +200,23 @@ export default function AdminDashboard() {
               </div>
             </Card>
 
-            <Card className="p-6">
+            <Card className="luxury-glass p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground/70">Sold Out</p>
-                  <p className="text-3xl font-bold mt-2 text-red-600">{soldOutProducts}</p>
+                  <p className="mt-2 text-3xl font-bold text-red-700">{soldOutProducts}</p>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
-                  <AlertCircle className="w-6 h-6 text-red-600" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+                  <AlertCircle className="w-6 h-6 text-red-700" />
                 </div>
               </div>
             </Card>
 
-            <Card className="p-6">
+            <Card className="luxury-glass p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-foreground/70">Inventory Value</p>
-                  <p className="text-3xl font-bold mt-2 text-primary">{formatPrice(totalValue)}</p>
+                  <p className="mt-2 text-3xl font-bold text-primary">{formatPrice(totalValue)}</p>
                 </div>
                 <DollarSign className="w-12 h-12 text-primary/20" />
               </div>
@@ -225,15 +226,16 @@ export default function AdminDashboard() {
 
         {/* Add/Edit Form */}
         {(showForm || editingProduct) && (
-          <Card className="p-6 mb-8">
+          <Card className="luxury-glass mb-8 p-6">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">{editingProduct ? "Edit Product" : "Add New Product"}</h2>
+              <h2 className="text-2xl font-semibold">{editingProduct ? "Edit Product" : "Add New Product"}</h2>
               <Button
                 variant="outline"
                 onClick={() => {
                   setShowForm(false)
                   setEditingProduct(null)
                 }}
+                className="border-primary/25 bg-white/65 hover:bg-secondary/70"
               >
                 Cancel
               </Button>
@@ -248,24 +250,28 @@ export default function AdminDashboard() {
 
         {/* Products Table */}
         {loading ? (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-            <p className="mt-2 text-foreground/70">Loading products...</p>
+          <div className="grid gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <div key={index} className="premium-skeleton h-32" />
+              ))}
+            </div>
+            <div className="premium-skeleton h-80" />
           </div>
         ) : products.length === 0 ? (
-          <Card className="p-8 text-center">
+          <Card className="luxury-glass p-8 text-center">
             <Package className="w-16 h-16 mx-auto mb-4 text-foreground/20" />
             <p className="text-foreground/70 mb-4">No products yet. Create your first perfume!</p>
-            <Button onClick={() => setShowForm(true)} className="bg-primary hover:bg-primary/90">
+            <Button onClick={() => setShowForm(true)} className="bg-primary text-primary-foreground hover:bg-accent">
               Add Product
             </Button>
           </Card>
         ) : (
-          <Card className="overflow-hidden">
+          <Card className="luxury-glass overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-border bg-secondary/50">
+                  <tr className="border-b border-border bg-white/65">
                     <th className="text-left py-4 px-6 font-semibold">Product</th>
                     <th className="text-left py-4 px-6 font-semibold">Price</th>
                     <th className="text-left py-4 px-6 font-semibold">Stock</th>
@@ -276,13 +282,13 @@ export default function AdminDashboard() {
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <tr key={product.id} className="border-b border-border hover:bg-secondary/5 transition">
+                    <tr key={product.id} className="border-b border-border transition hover:bg-white/65">
                       <td className="py-4 px-6">
                         <div className="flex gap-3 items-center">
                           <img
                             src={product.image_url || "/placeholder.svg"}
                             alt={product.name}
-                            className="w-12 h-12 rounded object-cover"
+                            className="h-12 w-12 rounded-lg border border-border object-cover"
                           />
                           <div>
                             <p className="font-medium">{product.name}</p>
@@ -294,7 +300,7 @@ export default function AdminDashboard() {
                       <td className="py-4 px-6">
                         <span
                           className={
-                            product.stock_quantity > 0 ? "text-green-600 font-medium" : "text-red-600 font-medium"
+                            product.stock_quantity > 0 ? "font-medium text-emerald-700" : "font-medium text-red-700"
                           }
                         >
                           {product.stock_quantity}
@@ -312,7 +318,7 @@ export default function AdminDashboard() {
                             variant="outline"
                             size="sm"
                             onClick={() => setEditingProduct(product)}
-                            className="gap-2"
+                            className="gap-2 border-primary/25 bg-white/65 hover:bg-secondary/70"
                           >
                             <Edit2 className="w-4 h-4" />
                             <span className="hidden sm:inline">Edit</span>
@@ -321,7 +327,7 @@ export default function AdminDashboard() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleDeleteProduct(product.id)}
-                            className="gap-2 text-destructive hover:bg-destructive/10"
+                            className="gap-2 border-destructive/25 bg-white/65 text-destructive hover:bg-destructive/10"
                           >
                             <Trash2 className="w-4 h-4" />
                             <span className="hidden sm:inline">Delete</span>

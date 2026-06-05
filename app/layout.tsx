@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 
 import "./globals.css"
 import { BUSINESS_CONFIG } from "@/lib/constants"
+import { PageTransition } from "@/components/luxury-motion"
 
 export const metadata: Metadata = {
   title: `${BUSINESS_CONFIG.BRAND_NAME} – ${BUSINESS_CONFIG.TAGLINE} | Luxury Perfume`,
@@ -57,7 +58,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: "#a5549f",
+  themeColor: "#f7f1e4",
 }
 
 export default function RootLayout({
@@ -73,7 +74,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://mimi-scentual.com" />
       </head>
       <body className="antialiased bg-background text-foreground font-sans">
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   )
