@@ -11,6 +11,7 @@ import { formatPrice, getWhatsAppLink } from "@/lib/constants"
 import { MotionPress, MotionReveal } from "@/components/luxury-motion"
 import { ChevronLeft, ShoppingBag, Sparkles } from "lucide-react"
 import { ProductZoomGallery } from "@/components/product-zoom-gallery"
+import { getEleganceImage } from "@/lib/local-images"
 
 interface Product {
   id: number
@@ -85,11 +86,7 @@ export default function ProductDetails() {
   const isSoldOut = product.stock_quantity === 0
   const whatsappMessage = `Hi! I'm interested in purchasing ${product.name} for ${formatPrice(product.price)}.`
   const whatsappLink = getWhatsAppLink(whatsappMessage)
-  const galleryImages = [
-    product.image_url || "/placeholder.svg",
-    product.image_url || "/placeholder.svg",
-    product.image_url || "/placeholder.svg",
-  ]
+  const galleryImages = [getEleganceImage(), getEleganceImage(), getEleganceImage()]
 
   return (
     <div className="min-h-screen flex flex-col">

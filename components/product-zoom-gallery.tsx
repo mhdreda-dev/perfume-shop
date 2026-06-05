@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
+import { getEleganceImage } from "@/lib/local-images"
 
 type ProductZoomGalleryProps = {
   images: string[]
@@ -14,7 +15,8 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
   const [selectedImage, setSelectedImage] = useState(0)
   const [lens, setLens] = useState({ x: 50, y: 50, visible: false })
   const reduceMotion = useReducedMotion()
-  const activeImage = images[selectedImage] || "/placeholder.svg"
+  const safeImages = images.length > 0 ? images.map(() => getEleganceImage()) : [getEleganceImage()]
+  const activeImage = safeImages[selectedImage] || getEleganceImage()
 
   return (
     <div>
@@ -68,7 +70,7 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
       </div>
 
       <div className="mt-4 grid grid-cols-3 gap-3">
-        {images.map((image, index) => (
+        {safeImages.map((image, index) => (
           <motion.button
             key={`${image}-${index}`}
             type="button"

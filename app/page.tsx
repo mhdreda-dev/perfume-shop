@@ -20,6 +20,7 @@ import { MotionFloat, MotionPress, MotionReveal } from "@/components/luxury-moti
 import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { BUSINESS_CONFIG, formatPrice, getWhatsAppLink } from "@/lib/constants"
+import { ELEGANCE_BRAND_IMAGE } from "@/lib/local-images"
 
 const trustItems = [
   { icon: ShieldCheck, title: "100% Original", text: "Produits authentiques verifies" },
@@ -32,21 +33,21 @@ const featuredPerfumes = [
   {
     name: "Royal Amber Spain",
     price: 690,
-    image: "/luxury-perfume-bottle-elegant.jpg",
+    image: ELEGANCE_BRAND_IMAGE,
     notes: "Ambre chaud, musc propre, bois satiné",
     tag: "Homme & Femme",
   },
   {
     name: "Velvet Rose Madrid",
     price: 540,
-    image: "/luxury-perfume-brand-luxury-aesthetic.jpg",
+    image: ELEGANCE_BRAND_IMAGE,
     notes: "Rose élégante, vanille douce, iris",
     tag: "Femme",
   },
   {
     name: "Noir Citrus Barcelona",
     price: 620,
-    image: "/luxury-perfume-bottle-elegant.jpg",
+    image: ELEGANCE_BRAND_IMAGE,
     notes: "Bergamote, cedre, musc mineral",
     tag: "Homme",
   },
@@ -74,7 +75,7 @@ const whyChooseUs = [
   "Satisfaction client au coeur de chaque recommandation.",
 ]
 
-const instagramTiles = ["Nouveautes", "Best sellers", "Coffrets", "Conseils"]
+const instagramTiles = ["Nouveautés", "Best sellers", "Coffrets", "Conseils"]
 
 export default function Home() {
   const adviceMessage = getWhatsAppLink(
@@ -162,9 +163,9 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-lg border border-[#C8A96B]/28 bg-white/55 p-3 shadow-2xl shadow-[#C8A96B]/16 backdrop-blur-xl">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-[#E8DCCB]">
                   <img
-                    src="/luxury-perfume-brand-luxury-aesthetic.jpg"
+                    src={ELEGANCE_BRAND_IMAGE}
                     alt="Elegance Parfum luxury perfume bottle showcase"
-                    className="h-full w-full object-cover transition duration-700 hover:scale-[1.035]"
+                    className="h-full w-full object-cover object-center transition duration-700 hover:scale-[1.035]"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,247,242,0.04),rgba(42,42,42,0.18))]" />
                 </div>
@@ -224,7 +225,9 @@ export default function Home() {
                     <img
                       src={perfume.image}
                       alt={`${perfume.name} original perfume`}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.045]"
+                      className={`h-full w-full object-cover transition duration-700 group-hover:scale-[1.045] ${
+                        index === 1 ? "object-left" : index === 2 ? "object-right" : "object-center"
+                      }`}
                     />
                     <span className="absolute left-4 top-4 rounded-full border border-white/70 bg-white/78 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8C7140] backdrop-blur-md">
                       {perfume.tag}
@@ -266,23 +269,33 @@ export default function Home() {
                 <MotionFloat
                   key={name}
                   delay={index * 0.04}
-                  className="min-w-[17rem] snap-start rounded-lg border border-[#C8A96B]/22 bg-white/64 p-5 shadow-lg shadow-[#C8A96B]/10 backdrop-blur-xl transition duration-300 hover:-translate-y-1 md:min-w-[20rem]"
+                  className="min-w-[17rem] snap-start overflow-hidden rounded-lg border border-[#C8A96B]/22 bg-white/64 shadow-lg shadow-[#C8A96B]/10 backdrop-blur-xl transition duration-300 hover:-translate-y-1 md:min-w-[20rem]"
                 >
-                  <div className="mb-8 flex items-center justify-between">
-                    <div className="flex gap-1 text-[#C8A96B]">
-                      {Array.from({ length: 5 }).map((_, starIndex) => (
-                        <Star key={starIndex} className="h-4 w-4 fill-current" />
-                      ))}
-                    </div>
-                    <Heart className="h-5 w-5 text-[#C8A96B]" />
+                  <div className="relative aspect-[16/10] overflow-hidden bg-[#E8DCCB]">
+                    <img
+                      src={ELEGANCE_BRAND_IMAGE}
+                      alt={`${name} Elegance Parfum best seller`}
+                      className={`h-full w-full object-cover ${index % 3 === 0 ? "object-left" : index % 3 === 1 ? "object-center" : "object-right"}`}
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,247,242,0.08),rgba(42,42,42,0.22))]" />
                   </div>
-                  <h3 className="text-2xl">{name}</h3>
-                  <p className="mt-3 text-sm text-[#2A2A2A]/62">{notes}</p>
-                  <div className="mt-6 flex items-center justify-between gap-4">
-                    <p className="text-xl font-semibold text-[#8C7140]">{formatPrice(Number(price))}</p>
-                    <Button asChild size="sm" variant="outline" className="border-[#C8A96B]/35 bg-white/70 hover:bg-[#E8DCCB]">
-                      <a href={adviceMessage} target="_blank" rel="noopener noreferrer">Ajouter</a>
-                    </Button>
+                  <div className="p-5">
+                    <div className="mb-8 flex items-center justify-between">
+                      <div className="flex gap-1 text-[#C8A96B]">
+                        {Array.from({ length: 5 }).map((_, starIndex) => (
+                          <Star key={starIndex} className="h-4 w-4 fill-current" />
+                        ))}
+                      </div>
+                      <Heart className="h-5 w-5 text-[#C8A96B]" />
+                    </div>
+                    <h3 className="text-2xl">{name}</h3>
+                    <p className="mt-3 text-sm text-[#2A2A2A]/62">{notes}</p>
+                    <div className="mt-6 flex items-center justify-between gap-4">
+                      <p className="text-xl font-semibold text-[#8C7140]">{formatPrice(Number(price))}</p>
+                      <Button asChild size="sm" variant="outline" className="border-[#C8A96B]/35 bg-white/70 hover:bg-[#E8DCCB]">
+                        <a href={adviceMessage} target="_blank" rel="noopener noreferrer">Ajouter</a>
+                      </Button>
+                    </div>
                   </div>
                 </MotionFloat>
               ))}
@@ -306,8 +319,9 @@ export default function Home() {
                     className="rounded-lg border border-[#C8A96B]/22 bg-white/62 p-6 text-center shadow-lg shadow-[#C8A96B]/8 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#C8A96B]/45"
                   >
                     <div className="mx-auto mb-7 grid h-14 w-14 place-items-center rounded-full border border-[#C8A96B]/28 bg-[#F8F4EE] text-[#C8A96B]">
-                      <Icon className="h-6 w-6" />
+                      <img src={ELEGANCE_BRAND_IMAGE} alt="" className="h-full w-full rounded-full object-cover" />
                     </div>
+                    <Icon className="mx-auto mb-4 h-5 w-5 text-[#C8A96B]" />
                     <h3 className="text-2xl">{category.title}</h3>
                     <p className="mt-3 text-sm text-[#2A2A2A]/62">{category.text}</p>
                   </MotionReveal>
@@ -320,11 +334,7 @@ export default function Home() {
         <section className="px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <MotionReveal className="relative overflow-hidden rounded-lg border border-[#C8A96B]/22 bg-white/55 p-3 shadow-2xl shadow-[#C8A96B]/10 backdrop-blur-xl">
-              <img
-                src="/luxury-perfume-bottle-elegant.jpg"
-                alt="Premium authentic perfume bottle"
-                className="aspect-[5/4] w-full rounded-md object-cover"
-              />
+              <img src={ELEGANCE_BRAND_IMAGE} alt="Elegance Parfum logo visual" className="aspect-[5/4] w-full rounded-md object-cover" />
             </MotionReveal>
             <MotionReveal delay={0.08}>
               <span className="luxury-badge">Why Choose Us</span>
@@ -365,9 +375,11 @@ export default function Home() {
                   className="group relative aspect-square overflow-hidden rounded-lg border border-[#C8A96B]/22 bg-[#E8DCCB] shadow-lg shadow-[#C8A96B]/8"
                 >
                   <img
-                    src={index % 2 === 0 ? "/luxury-perfume-brand-luxury-aesthetic.jpg" : "/luxury-perfume-bottle-elegant.jpg"}
+                    src={ELEGANCE_BRAND_IMAGE}
                     alt={`${tile} Elegance Parfum Instagram preview`}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+                    className={`h-full w-full object-cover transition duration-700 group-hover:scale-[1.05] ${
+                      index === 1 ? "object-left" : index === 2 ? "object-right" : "object-center"
+                    }`}
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,247,242,0.06),rgba(42,42,42,0.28))]" />
                   <p className="absolute bottom-4 left-4 right-4 text-sm font-semibold uppercase tracking-[0.18em] text-white">
@@ -380,7 +392,10 @@ export default function Home() {
         </section>
 
         <section className="px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-          <MotionReveal className="mx-auto grid max-w-7xl gap-6 rounded-lg border border-[#C8A96B]/28 bg-white/70 p-6 shadow-2xl shadow-[#C8A96B]/12 backdrop-blur-xl sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <MotionReveal className="mx-auto grid max-w-7xl gap-6 rounded-lg border border-[#C8A96B]/28 bg-white/70 p-6 shadow-2xl shadow-[#C8A96B]/12 backdrop-blur-xl sm:p-8 lg:grid-cols-[auto_1fr_auto] lg:items-center">
+            <div className="hidden h-24 w-24 overflow-hidden rounded-full border border-[#C8A96B]/28 bg-white shadow-lg shadow-[#C8A96B]/10 sm:block">
+              <img src={ELEGANCE_BRAND_IMAGE} alt="Elegance Parfum WhatsApp conseil" className="h-full w-full object-cover" />
+            </div>
             <div>
               <span className="luxury-badge">Conseil personnalisé</span>
               <h2 className="mt-4 text-4xl leading-tight sm:text-5xl">Besoin d'un conseil parfum ?</h2>
