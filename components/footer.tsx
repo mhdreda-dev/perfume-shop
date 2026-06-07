@@ -5,38 +5,42 @@ import { MotionReveal } from "@/components/luxury-motion"
 
 export function Footer() {
   return (
-    <footer className="overflow-x-hidden border-t border-border bg-white/72 py-4 text-foreground backdrop-blur-xl sm:py-12 lg:py-14">
+    <footer className="overflow-x-hidden border-t border-border bg-white/72 py-1.5 text-foreground backdrop-blur-xl sm:py-12 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-3 text-center sm:hidden">
-          <div className="flex min-w-0 items-center justify-center gap-2">
-            <span className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-white shadow-sm">
-              <img src="/elegance-parfum-logo.jpeg" alt="Elegance Parfum logo" className="h-full w-full object-cover" />
-            </span>
-            <h2 className="text-lg font-semibold leading-tight text-foreground">{BUSINESS_CONFIG.BRAND_NAME}</h2>
+        <div className="grid gap-1 text-center sm:hidden">
+          <div className="flex min-w-0 items-center gap-2">
+            <div className="flex min-w-0 flex-1 items-center gap-1.5">
+              <span className="h-7 max-h-9 w-7 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-white shadow-sm">
+                <img src="/elegance-parfum-logo.jpeg" alt="Elegance Parfum logo" className="h-full w-full object-cover" />
+              </span>
+              <span className="min-w-0 truncate whitespace-nowrap text-[0.8rem] font-semibold leading-none text-foreground">
+                {BUSINESS_CONFIG.BRAND_NAME}
+              </span>
+            </div>
+
+            <div className="flex shrink-0 items-center justify-end gap-1">
+              <a
+                href={`https://wa.me/${BUSINESS_CONFIG.WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-7 items-center justify-center gap-1 rounded-md bg-primary px-2 text-[0.68rem] font-semibold text-primary-foreground"
+              >
+                <MessageCircle className="h-3 w-3" />
+                WhatsApp
+              </a>
+              <a
+                href={BUSINESS_CONFIG.INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-7 items-center justify-center gap-1 rounded-md border border-primary/20 bg-white/60 px-2 text-[0.68rem] font-semibold text-primary"
+              >
+                <Instagram className="h-3 w-3" />
+                Instagram
+              </a>
+            </div>
           </div>
 
-          <div className="flex w-full items-center justify-center gap-2">
-            <a
-              href={`https://wa.me/${BUSINESS_CONFIG.WHATSAPP_NUMBER}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-9 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground"
-            >
-              <MessageCircle className="h-4 w-4" />
-              WhatsApp
-            </a>
-            <a
-              href={BUSINESS_CONFIG.INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-9 flex-1 items-center justify-center gap-2 rounded-md border border-primary/20 bg-white/60 px-3 py-2 text-sm font-semibold text-primary"
-            >
-              <Instagram className="h-4 w-4" />
-              Instagram
-            </a>
-          </div>
-
-          <p className="text-[0.65rem] uppercase tracking-[0.12em] text-foreground/45">
+          <p className="text-center text-[0.55rem] uppercase leading-none tracking-[0.06em] text-foreground/45">
             &copy; 2026 {BUSINESS_CONFIG.BRAND_NAME}
           </p>
         </div>

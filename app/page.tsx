@@ -193,8 +193,8 @@ export default function Home() {
     <div className="min-h-screen overflow-x-hidden bg-[#FAF7F2] text-[#2A2A2A]">
       <Navigation />
 
-      <main className="pb-16 md:pb-0">
-        <section className="relative px-4 pb-10 pt-6 sm:px-6 sm:pb-16 lg:px-8 lg:pb-24 lg:pt-14">
+      <main className="pb-3 md:pb-0">
+        <section className="relative px-4 pb-5 pt-3 sm:px-6 sm:pb-16 sm:pt-6 lg:px-8 lg:pb-24 lg:pt-14">
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
             {[
               "left-[8%] top-[14%]",
@@ -211,30 +211,31 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
+          <div className="mx-auto grid max-w-7xl items-center gap-4 sm:gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
             <MotionReveal className="relative z-10">
-              <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-[#C8A96B]/30 bg-white/60 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#8C7140] shadow-sm backdrop-blur-xl sm:mb-7 sm:px-4 sm:text-xs sm:tracking-[0.24em]">
-                <Sparkles className="h-4 w-4" />
+              <div className="mb-3 inline-flex max-w-full items-center gap-1.5 rounded-full border border-[#C8A96B]/30 bg-white/60 px-2.5 py-1.5 text-[0.58rem] font-semibold uppercase tracking-[0.12em] text-[#8C7140] shadow-sm backdrop-blur-xl sm:mb-7 sm:gap-2 sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.24em]">
+                <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 Luxury perfume boutique
               </div>
 
-              <h1 className="max-w-4xl text-[2.65rem] font-semibold leading-[0.94] text-balance min-[390px]:text-5xl sm:text-7xl lg:text-8xl">
+              <h1 className="max-w-[20rem] text-[2.05rem] font-semibold leading-[0.94] text-balance min-[390px]:text-[2.3rem] sm:max-w-4xl sm:text-7xl lg:text-8xl">
                 Découvrez l'Art du Parfum
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#2A2A2A]/70 sm:mt-6 sm:text-lg sm:leading-8">
-                Parfums 100% originaux importés directement d'Espagne.
+              <p className="mt-2 max-w-[19rem] text-xs leading-5 text-[#2A2A2A]/70 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
+                Parfums originaux importés d'Espagne.
               </p>
 
-              <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row">
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-9 sm:flex sm:flex-row sm:gap-3">
                 <MotionPress className="w-full sm:w-auto">
                   <Button
                     asChild
                     size="lg"
-                    className="h-12 w-full bg-[#2A2A2A] px-5 text-white shadow-xl shadow-[#2A2A2A]/15 hover:bg-[#C8A96B] hover:text-[#2A2A2A] sm:w-auto sm:px-7"
+                    className="h-10 w-full bg-[#2A2A2A] px-3 text-xs text-white shadow-xl shadow-[#2A2A2A]/15 hover:bg-[#C8A96B] hover:text-[#2A2A2A] sm:h-12 sm:w-auto sm:px-7 sm:text-sm"
                   >
                     <Link href="/collection">
-                      Voir la Collection
-                      <ArrowRight className="h-4 w-4" />
+                      <span className="sm:hidden">Collection</span>
+                      <span className="hidden sm:inline">Voir la Collection</span>
+                      <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                     </Link>
                   </Button>
                 </MotionPress>
@@ -243,22 +244,23 @@ export default function Home() {
                     asChild
                     variant="outline"
                     size="lg"
-                    className="h-12 w-full border-[#C8A96B]/45 bg-white/70 px-5 text-[#2A2A2A] shadow-lg shadow-[#C8A96B]/10 hover:bg-[#E8DCCB] sm:w-auto sm:px-7"
+                    className="h-10 w-full border-[#C8A96B]/45 bg-white/70 px-3 text-xs text-[#2A2A2A] shadow-lg shadow-[#C8A96B]/10 hover:bg-[#E8DCCB] sm:h-12 sm:w-auto sm:px-7 sm:text-sm"
                   >
                     <a href={adviceMessage} target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="h-4 w-4" />
-                      Commander Maintenant
+                      <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                      <span className="sm:hidden">WhatsApp</span>
+                      <span className="hidden sm:inline">Commander Maintenant</span>
                     </a>
                   </Button>
                 </MotionPress>
               </div>
 
-              <div className="mt-7 grid max-w-xl grid-cols-3 gap-2 sm:mt-10 sm:gap-3">
+              <div className="mt-3 grid max-w-xl grid-cols-3 gap-1.5 sm:mt-10 sm:gap-3">
                 {["Original", "Espagne", "Livraison rapide"].map((item, index) => (
                   <MotionFloat
                     key={item}
                     delay={index * 0.06}
-                    className="rounded-lg border border-[#C8A96B]/24 bg-white/58 px-2 py-3 text-center text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-[#8C7140] shadow-lg shadow-[#C8A96B]/8 backdrop-blur-xl sm:px-3 sm:py-4 sm:text-xs sm:tracking-[0.16em]"
+                    className="rounded-md border border-[#C8A96B]/24 bg-white/58 px-1.5 py-1.5 text-center text-[0.55rem] font-semibold uppercase tracking-[0.07em] text-[#8C7140] shadow-md shadow-[#C8A96B]/8 backdrop-blur-xl sm:rounded-lg sm:px-3 sm:py-4 sm:text-xs sm:tracking-[0.16em]"
                   >
                     {item}
                   </MotionFloat>
@@ -267,23 +269,23 @@ export default function Home() {
             </MotionReveal>
 
             <MotionFloat delay={0.12} className="relative z-10">
-              <div className="relative overflow-hidden rounded-lg border border-[#C8A96B]/28 bg-white/55 p-3 shadow-2xl shadow-[#C8A96B]/16 backdrop-blur-xl">
-                <div className="relative aspect-[4/5] max-h-[34rem] overflow-hidden rounded-md bg-[#E8DCCB]">
+              <div className="relative overflow-hidden rounded-lg border border-[#C8A96B]/32 bg-white/62 p-2 shadow-xl shadow-[#C8A96B]/14 backdrop-blur-xl sm:p-3 sm:shadow-2xl sm:shadow-[#C8A96B]/16">
+                <div className="relative aspect-square max-h-[18rem] overflow-hidden rounded-md bg-[#E8DCCB] sm:aspect-[4/5] sm:max-h-[34rem]">
                   <ProductImage
                     product={heroProduct}
                     className="h-full w-full object-cover object-center transition duration-700 hover:scale-[1.035]"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,247,242,0.04),rgba(42,42,42,0.18))]" />
                 </div>
-                <div className="absolute left-4 top-4 rounded-lg border border-white/70 bg-white/78 px-3 py-2 shadow-xl shadow-[#C8A96B]/12 backdrop-blur-xl sm:left-6 sm:top-6 sm:px-4 sm:py-3">
-                  <p className="text-xs uppercase tracking-[0.22em] text-[#8C7140]">Produit vedette</p>
-                  <p className="mt-1 font-serif text-xl font-semibold sm:text-2xl">
+                <div className="absolute left-3 top-3 rounded-md border border-white/70 bg-white/80 px-2.5 py-1.5 shadow-lg shadow-[#C8A96B]/12 backdrop-blur-xl sm:left-6 sm:top-6 sm:rounded-lg sm:px-4 sm:py-3">
+                  <p className="text-[0.58rem] uppercase leading-none tracking-[0.16em] text-[#8C7140] sm:text-xs sm:tracking-[0.22em]">Produit vedette</p>
+                  <p className="mt-0.5 font-serif text-base font-semibold sm:mt-1 sm:text-2xl">
                     {heroProduct ? formatPrice(heroProduct.price) : "DH"}
                   </p>
                 </div>
-                <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-[#C8A96B]/24 bg-white/80 p-3 shadow-xl shadow-[#C8A96B]/12 backdrop-blur-xl sm:bottom-6 sm:left-6 sm:right-6 sm:p-4">
-                  <p className="text-xs uppercase tracking-[0.22em] text-[#8C7140]">Elegance Parfum</p>
-                  <p className="mt-2 line-clamp-2 text-sm font-medium sm:text-lg">
+                <div className="absolute bottom-3 left-3 right-3 rounded-md border border-[#C8A96B]/24 bg-white/82 p-2 shadow-lg shadow-[#C8A96B]/12 backdrop-blur-xl sm:bottom-6 sm:left-6 sm:right-6 sm:rounded-lg sm:p-4">
+                  <p className="text-[0.58rem] uppercase leading-none tracking-[0.16em] text-[#8C7140] sm:text-xs sm:tracking-[0.22em]">Elegance Parfum</p>
+                  <p className="mt-1 line-clamp-1 text-xs font-medium sm:mt-2 sm:line-clamp-2 sm:text-lg">
                     {heroProduct?.name || "Sélection premium de parfums originaux importés d'Espagne."}
                   </p>
                 </div>
@@ -292,22 +294,26 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="py-3 sm:px-6 sm:py-8 lg:px-8">
+          <div className="mx-auto max-w-7xl overflow-hidden">
+            <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-2 sm:gap-3 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
             {trustItems.map((item, index) => {
               const Icon = item.icon
               return (
                 <MotionReveal
                   key={item.title}
                   delay={index * 0.05}
-                  className="rounded-lg border border-[#C8A96B]/22 bg-white/62 p-4 shadow-lg shadow-[#C8A96B]/8 backdrop-blur-xl sm:p-5"
+                  className="w-[190px] shrink-0 snap-start rounded-lg border border-[#C8A96B]/22 bg-white/62 p-3 shadow-md shadow-[#C8A96B]/8 backdrop-blur-xl min-[390px]:w-[210px] sm:w-auto sm:shrink sm:p-5 sm:shadow-lg"
                 >
-                  <Icon className="mb-6 h-6 w-6 text-[#C8A96B]" />
-                  <h2 className="font-sans text-base font-semibold">{item.title}</h2>
-                  <p className="mt-2 text-sm text-[#2A2A2A]/62">{item.text}</p>
+                  <Icon className="mb-3 h-4 w-4 text-[#C8A96B] sm:mb-6 sm:h-6 sm:w-6" />
+                  <h2 className="font-sans text-sm font-semibold leading-tight sm:text-base">{item.title}</h2>
+                  <p className="mt-1 hidden text-xs leading-5 text-[#2A2A2A]/62 min-[390px]:line-clamp-2 min-[390px]:block sm:mt-2 sm:block sm:text-sm">
+                    {item.text}
+                  </p>
                 </MotionReveal>
               )
             })}
+            </div>
           </div>
         </section>
 
@@ -423,20 +429,20 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
-          <MotionReveal className="mx-auto grid max-w-7xl gap-6 rounded-lg border border-[#C8A96B]/28 bg-white/70 p-5 shadow-2xl shadow-[#C8A96B]/12 backdrop-blur-xl sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <section className="px-4 py-3 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+          <MotionReveal className="mx-auto grid max-w-7xl gap-2 rounded-lg border border-[#C8A96B]/28 bg-white/70 p-2.5 shadow-xl shadow-[#C8A96B]/10 backdrop-blur-xl sm:gap-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <span className="luxury-badge">Conseil personnalisé</span>
-              <h2 className="mt-4 text-3xl leading-tight sm:text-5xl">Besoin d'un conseil parfum ?</h2>
-              <p className="mt-4 max-w-2xl text-[#2A2A2A]/65">
+              <h2 className="mt-1.5 text-xl leading-tight sm:mt-4 sm:text-5xl">Besoin d'un conseil parfum ?</h2>
+              <p className="mt-4 hidden max-w-2xl text-[#2A2A2A]/65 sm:block sm:text-base sm:leading-7">
                 Parlez-nous de votre style, de votre budget en DH et de l'occasion. Nous vous recommandons le parfum
                 original le plus adapté.
               </p>
             </div>
             <MotionPress>
-              <Button asChild size="lg" className="h-12 w-full bg-[#25D366] px-7 text-white shadow-xl shadow-[#25D366]/20 hover:bg-[#1fb457] sm:w-auto">
+              <Button asChild size="sm" className="h-8 w-full bg-[#25D366] px-3 text-xs text-white shadow-lg shadow-[#25D366]/15 hover:bg-[#1fb457] sm:h-12 sm:w-auto sm:px-7 sm:text-base">
                 <a href={adviceMessage} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="h-4 w-4" />
+                  <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   WhatsApp
                 </a>
               </Button>
@@ -444,12 +450,12 @@ export default function Home() {
           </MotionReveal>
         </section>
 
-        <div className="fixed inset-x-3 bottom-3 z-40 md:hidden">
+        <div className="fixed inset-x-3 bottom-[calc(0.5rem+env(safe-area-inset-bottom))] z-40 md:hidden">
           <a
             href={adviceMessage}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-12 items-center justify-center gap-2 rounded-lg border border-[#C8A96B]/25 bg-[#2A2A2A] px-4 text-sm font-semibold text-white shadow-2xl shadow-[#2A2A2A]/24 backdrop-blur-xl"
+            className="flex h-14 items-center justify-center gap-2 rounded-lg border border-[#C8A96B]/25 bg-[#2A2A2A] px-4 text-sm font-semibold text-white shadow-2xl shadow-[#2A2A2A]/24 backdrop-blur-xl"
           >
             <MessageCircle className="h-4 w-4" />
             Commander Maintenant
@@ -457,7 +463,9 @@ export default function Home() {
         </div>
       </main>
 
-      <Footer />
+      <div className="mb-[calc(4.5rem+env(safe-area-inset-bottom))] md:mb-0">
+        <Footer />
+      </div>
     </div>
   )
 }
