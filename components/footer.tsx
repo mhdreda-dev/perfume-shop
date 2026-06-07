@@ -1,47 +1,74 @@
 import Link from "next/link"
 import { BUSINESS_CONFIG } from "@/lib/constants"
-import { Instagram, MessageCircle, Sparkles } from "lucide-react"
+import { Instagram, Mail, MessageCircle, Sparkles } from "lucide-react"
 import { MotionReveal } from "@/components/luxury-motion"
 
 export function Footer() {
   return (
-    <footer className="overflow-x-hidden border-t border-border bg-white/72 py-1.5 text-foreground backdrop-blur-xl sm:py-12 lg:py-14">
+    <footer className="overflow-x-hidden border-t border-border bg-white/72 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] text-foreground backdrop-blur-xl sm:py-12 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-1 text-center sm:hidden">
-          <div className="flex min-w-0 items-center gap-2">
-            <div className="flex min-w-0 flex-1 items-center gap-1.5">
-              <span className="h-7 max-h-9 w-7 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-white shadow-sm">
-                <img src="/elegance-parfum-logo.jpeg" alt="Elegance Parfum logo" className="h-full w-full object-cover" />
-              </span>
-              <span className="min-w-0 truncate whitespace-nowrap text-[0.8rem] font-semibold leading-none text-foreground">
-                {BUSINESS_CONFIG.BRAND_NAME}
-              </span>
-            </div>
-
-            <div className="flex shrink-0 items-center justify-end gap-1">
-              <a
-                href={`https://wa.me/${BUSINESS_CONFIG.WHATSAPP_NUMBER}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-7 items-center justify-center gap-1 rounded-md bg-primary px-2 text-[0.68rem] font-semibold text-primary-foreground"
-              >
-                <MessageCircle className="h-3 w-3" />
-                WhatsApp
-              </a>
-              <a
-                href={BUSINESS_CONFIG.INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-7 items-center justify-center gap-1 rounded-md border border-primary/20 bg-white/60 px-2 text-[0.68rem] font-semibold text-primary"
-              >
-                <Instagram className="h-3 w-3" />
-                Instagram
-              </a>
-            </div>
+        <div className="mx-auto max-w-sm rounded-2xl border border-[#C8A96B]/24 bg-white/86 p-2.5 text-center shadow-xl shadow-[#C8A96B]/12 backdrop-blur-xl sm:hidden">
+          <div className="flex items-center justify-center gap-2">
+            <span className="h-7 w-7 shrink-0 overflow-hidden rounded-full border border-[#C8A96B]/35 bg-white shadow-sm">
+              <img src="/elegance-parfum-logo.jpeg" alt="Elegance Parfum logo" className="h-full w-full object-cover" />
+            </span>
+            <span className="text-[0.74rem] font-semibold uppercase leading-none tracking-[0.14em] text-[#2A2A2A]">
+              Elegance Parfum
+            </span>
           </div>
 
-          <p className="text-center text-[0.55rem] uppercase leading-none tracking-[0.06em] text-foreground/45">
-            &copy; 2026 {BUSINESS_CONFIG.BRAND_NAME}
+          <p className="mx-auto mt-1.5 max-w-[17rem] text-[0.7rem] leading-4 text-[#2A2A2A]/62">
+            Parfums originaux importés d’Espagne pour homme et femme.
+          </p>
+
+          <a
+            href={`https://wa.me/${BUSINESS_CONFIG.WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex h-9 w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 text-[0.68rem] font-bold uppercase tracking-[0.08em] text-white shadow-lg shadow-[#25D366]/18"
+          >
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp — Réponse rapide
+          </a>
+
+          <div className="mt-1.5 flex justify-center gap-2">
+            <a
+              href={BUSINESS_CONFIG.INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-7 items-center justify-center gap-1.5 rounded-full border border-[#C8A96B]/28 bg-white/70 px-3 text-[0.65rem] font-semibold text-[#8C7140]"
+            >
+              <Instagram className="h-3.5 w-3.5" />
+              Instagram
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex h-7 items-center justify-center gap-1.5 rounded-full border border-[#C8A96B]/28 bg-white/70 px-3 text-[0.65rem] font-semibold text-[#8C7140]"
+            >
+              <Mail className="h-3.5 w-3.5" />
+              Contact
+            </Link>
+          </div>
+
+          <div className="my-1.5 h-px bg-[#C8A96B]/18" />
+
+          <p className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[#8C7140]">
+            Importé d’Espagne
+          </p>
+
+          <div className="mt-1.5 flex justify-center gap-1.5">
+            {["Homme", "Femme", "Unisexe"].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-[#C8A96B]/24 bg-[#FAF7F2]/78 px-2.5 py-0.5 text-[0.58rem] font-semibold text-[#8C7140]"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <p className="mt-1.5 text-[0.56rem] uppercase tracking-[0.08em] text-[#2A2A2A]/42">
+            © Elegance Parfum
           </p>
         </div>
 
