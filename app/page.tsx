@@ -294,7 +294,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-3 sm:px-6 sm:py-8 lg:px-8">
+        <section className="py-2 sm:px-6 sm:py-8 lg:px-8">
           <div className="mx-auto max-w-7xl overflow-hidden">
             <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-2 sm:gap-3 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
             {trustItems.map((item, index) => {
@@ -303,11 +303,11 @@ export default function Home() {
                 <MotionReveal
                   key={item.title}
                   delay={index * 0.05}
-                  className="w-[190px] shrink-0 snap-start rounded-lg border border-[#C8A96B]/22 bg-white/62 p-3 shadow-md shadow-[#C8A96B]/8 backdrop-blur-xl min-[390px]:w-[210px] sm:w-auto sm:shrink sm:p-5 sm:shadow-lg"
+                  className="w-[180px] shrink-0 snap-start rounded-lg border border-[#C8A96B]/22 bg-white/62 p-2.5 shadow-md shadow-[#C8A96B]/8 backdrop-blur-xl min-[390px]:w-[200px] sm:w-auto sm:shrink sm:p-5 sm:shadow-lg"
                 >
-                  <Icon className="mb-3 h-4 w-4 text-[#C8A96B] sm:mb-6 sm:h-6 sm:w-6" />
+                  <Icon className="mb-2 h-4 w-4 text-[#C8A96B] sm:mb-6 sm:h-6 sm:w-6" />
                   <h2 className="font-sans text-sm font-semibold leading-tight sm:text-base">{item.title}</h2>
-                  <p className="mt-1 hidden text-xs leading-5 text-[#2A2A2A]/62 min-[390px]:line-clamp-2 min-[390px]:block sm:mt-2 sm:block sm:text-sm">
+                  <p className="mt-2 hidden text-sm text-[#2A2A2A]/62 sm:block">
                     {item.text}
                   </p>
                 </MotionReveal>
