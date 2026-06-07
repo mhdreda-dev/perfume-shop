@@ -5,8 +5,43 @@ import { MotionReveal } from "@/components/luxury-motion"
 
 export function Footer() {
   return (
-    <footer className="overflow-x-hidden border-t border-border bg-white/72 py-8 text-foreground backdrop-blur-xl sm:py-12 lg:py-14">
+    <footer className="overflow-x-hidden border-t border-border bg-white/72 py-4 text-foreground backdrop-blur-xl sm:py-12 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center gap-3 text-center sm:hidden">
+          <div className="flex min-w-0 items-center justify-center gap-2">
+            <span className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-white shadow-sm">
+              <img src="/elegance-parfum-logo.jpeg" alt="Elegance Parfum logo" className="h-full w-full object-cover" />
+            </span>
+            <h2 className="text-lg font-semibold leading-tight text-foreground">{BUSINESS_CONFIG.BRAND_NAME}</h2>
+          </div>
+
+          <div className="flex w-full items-center justify-center gap-2">
+            <a
+              href={`https://wa.me/${BUSINESS_CONFIG.WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-9 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp
+            </a>
+            <a
+              href={BUSINESS_CONFIG.INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-9 flex-1 items-center justify-center gap-2 rounded-md border border-primary/20 bg-white/60 px-3 py-2 text-sm font-semibold text-primary"
+            >
+              <Instagram className="h-4 w-4" />
+              Instagram
+            </a>
+          </div>
+
+          <p className="text-[0.65rem] uppercase tracking-[0.12em] text-foreground/45">
+            &copy; 2026 {BUSINESS_CONFIG.BRAND_NAME}
+          </p>
+        </div>
+
+        <div className="hidden sm:block">
         <MotionReveal className="mb-8 grid gap-4 border-b border-border pb-8 sm:mb-10 sm:gap-6 sm:pb-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
             <p className="inline-flex max-w-full items-center gap-2 text-xs uppercase tracking-[0.16em] text-primary sm:text-sm sm:tracking-[0.28em]">
@@ -111,6 +146,7 @@ export function Footer() {
 
         <div className="border-t border-border pt-6 text-center text-[0.68rem] uppercase tracking-[0.14em] text-foreground/45 sm:pt-8 sm:text-xs sm:tracking-[0.22em]">
           <p>&copy; 2026 {BUSINESS_CONFIG.BRAND_NAME} - parfums originaux importés d'Espagne. All rights reserved.</p>
+        </div>
         </div>
       </div>
     </footer>

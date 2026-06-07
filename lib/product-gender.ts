@@ -1,7 +1,15 @@
-export type ProductGender = "homme" | "femme"
+export type ProductGender = "homme" | "femme" | "unisexe"
 
-export type GenderedProduct<T extends { name: string }> = T & {
+export type GenderedProduct<T extends { name: string; gender?: string | null }> = T & {
   gender: ProductGender
+}
+
+export const PRODUCT_GENDERS: ProductGender[] = ["homme", "femme", "unisexe"]
+
+export const PRODUCT_GENDER_LABELS: Record<ProductGender, string> = {
+  homme: "Homme",
+  femme: "Femme",
+  unisexe: "Unisexe",
 }
 
 const hommeKeywords = [
@@ -66,9 +74,17 @@ export function getProductGender(product: { name: string }): ProductGender {
   return "femme"
 }
 
-export function withProductGender<T extends { name: string }>(product: T): GenderedProduct<T> {
+export function normalizeProductGender(value?: string | null): ProductGender | null {
+  return PRODUCT_GENDERS.includes(value as ProductGender) ? (value as ProductGender) : null
+}
+
+export function resolveProductGender(product: { name: string; gender?: string | null }): ProductGender {
+  return normalizeProductGender(product.gender) || getProductGender(product)
+}
+
+export function withProductGender<T extends { name: string; gender?: string | null }>(product: T): GenderedProduct<T> {
   return {
     ...product,
-    gender: getProductGender(product),
+    gender: resolveProductGender(product),
   }
 }

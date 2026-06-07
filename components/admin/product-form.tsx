@@ -5,9 +5,11 @@ import type React from "react"
 import { useState, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { BUSINESS_CONFIG, formatPrice } from "@/lib/constants"
 import { ELEGANCE_BRAND_IMAGE, getSafeProductImage } from "@/lib/local-images"
+import { PRODUCT_GENDER_LABELS, PRODUCT_GENDERS, type ProductGender } from "@/lib/product-gender"
 
 interface ProductFormProps {
   initialData?: {
@@ -18,6 +20,7 @@ interface ProductFormProps {
     image_url: string
     description: string
     notes: string
+    gender?: ProductGender | null
   }
   onSubmit: (data: any) => Promise<void>
   isLoading?: boolean
@@ -32,6 +35,7 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
       image_url: "",
       description: "",
       notes: "",
+      gender: "unisexe" as ProductGender,
     },
   )
   const [error, setError] = useState<string | null>(null)
@@ -54,6 +58,10 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
       setFormData((prev) => ({ ...prev, image_url: result }))
     }
     reader.readAsDataURL(file)
+  }
+
+  const handleGenderChange = (gender: ProductGender) => {
+    setFormData((prev) => ({ ...prev, gender }))
   }
 
   const handleSubmit = async (e: FormEvent) => {
@@ -140,6 +148,26 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
               </p>
             )}
           </div>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Genre</label>
+          <Select
+            value={formData.gender || "unisexe"}
+            onValueChange={(value) => handleGenderChange(value as ProductGender)}
+            disabled={isLoading}
+          >
+            <SelectTrigger className="min-h-11 w-full bg-white/65">
+              <SelectValue placeholder="Choisir un genre" />
+            </SelectTrigger>
+            <SelectContent>
+              {PRODUCT_GENDERS.map((gender) => (
+                <SelectItem key={gender} value={gender}>
+                  {PRODUCT_GENDER_LABELS[gender]}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="space-y-2">

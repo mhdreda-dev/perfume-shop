@@ -8,6 +8,7 @@
     "lint": "eslint .",
     "start": "next start",
     "db:migrate": "node scripts/migrate-db.js",
+    "db:migrate:gender": "node scripts/migrate-gender.js",
     "db:init": "node scripts/init-db.js"
   },
   "dependencies": {

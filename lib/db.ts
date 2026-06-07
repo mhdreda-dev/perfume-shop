@@ -1,4 +1,5 @@
 import { neon } from "@neondatabase/serverless"
+import { resolveProductGender, type ProductGender } from "@/lib/product-gender"
 
 const sql = neon(process.env.DATABASE_URL!)
 
@@ -10,6 +11,7 @@ function mapPerfume(row: any) {
     price: typeof row.price === "string" ? parseFloat(row.price) : Number(row.price),
     stock_quantity: Number(row.stock_quantity),
     is_active: Boolean(row.is_active),
+    gender: resolveProductGender(row),
   }
 }
 
@@ -40,9 +42,10 @@ export async function createPerfume(
   image_url: string,
   description: string,
   notes: string,
+  gender: ProductGender = "unisexe",
 ) {
   try {
-    const result = await sql`INSERT INTO perfumes (name, price, stock_quantity, image_url, description, notes) VALUES (${name}, ${price}, ${stock_quantity}, ${image_url}, ${description}, ${notes}) RETURNING *`
+    const result = await sql`INSERT INTO perfumes (name, price, stock_quantity, image_url, description, notes, gender) VALUES (${name}, ${price}, ${stock_quantity}, ${image_url}, ${description}, ${notes}, ${gender}) RETURNING *`
     return mapPerfume(result[0])
   } catch (error) {
     console.error("Error creating perfume:", error)
@@ -58,9 +61,10 @@ export async function updatePerfume(
   image_url: string,
   description: string,
   notes: string,
+  gender: ProductGender = "unisexe",
 ) {
   try {
-    const result = await sql`UPDATE perfumes SET name = ${name}, price = ${price}, stock_quantity = ${stock_quantity}, image_url = ${image_url}, description = ${description}, notes = ${notes}, updated_at = CURRENT_TIMESTAMP WHERE id = ${id} RETURNING *`
+    const result = await sql`UPDATE perfumes SET name = ${name}, price = ${price}, stock_quantity = ${stock_quantity}, image_url = ${image_url}, description = ${description}, notes = ${notes}, gender = ${gender}, updated_at = CURRENT_TIMESTAMP WHERE id = ${id} RETURNING *`
     return mapPerfume(result[0])
   } catch (error) {
     console.error("Error updating perfume:", error)

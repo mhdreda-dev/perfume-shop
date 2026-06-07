@@ -11,6 +11,7 @@ import { formatPrice, getWhatsAppLink } from "@/lib/constants"
 import { MotionPress, MotionReveal } from "@/components/luxury-motion"
 import { ChevronLeft, ShoppingBag, Sparkles } from "lucide-react"
 import { ProductZoomGallery } from "@/components/product-zoom-gallery"
+import { PRODUCT_GENDER_LABELS, type ProductGender } from "@/lib/product-gender"
 
 interface Product {
   id: number
@@ -20,6 +21,7 @@ interface Product {
   image_url: string
   description: string
   notes: string
+  gender: ProductGender
 }
 
 export default function ProductDetails() {
@@ -118,8 +120,14 @@ export default function ProductDetails() {
                 Signature perfume
               </p>
               <h1 className="text-3xl font-semibold leading-tight sm:text-5xl">{product.name}</h1>
+              <p className="text-sm font-medium text-foreground/70 sm:text-base">
+                Genre: <span className="text-primary">{PRODUCT_GENDER_LABELS[product.gender]}</span>
+              </p>
               <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                 <span className="text-2xl font-semibold text-primary sm:text-3xl">{formatPrice(product.price)}</span>
+                <Badge className="border border-primary/20 bg-white/65 text-primary">
+                  {PRODUCT_GENDER_LABELS[product.gender]}
+                </Badge>
                 <Badge variant={isSoldOut ? "destructive" : "secondary"} className="border border-primary/20 bg-white/10">
                   {isSoldOut ? "Out of Stock" : `${product.stock_quantity} Available`}
                 </Badge>

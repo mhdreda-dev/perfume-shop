@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { formatPrice, getWhatsAppLink } from "@/lib/constants"
 import { ELEGANCE_BRAND_IMAGE, getSafeProductImage } from "@/lib/local-images"
+import { PRODUCT_GENDER_LABELS, type ProductGender } from "@/lib/product-gender"
 import { motion, useReducedMotion } from "framer-motion"
 import { Eye, ShoppingBag } from "lucide-react"
 
@@ -14,9 +15,10 @@ interface ProductCardProps {
   price: number
   image_url: string
   stock_quantity: number
+  gender: ProductGender
 }
 
-export function ProductCard({ id, name, price, image_url, stock_quantity }: ProductCardProps) {
+export function ProductCard({ id, name, price, image_url, stock_quantity, gender }: ProductCardProps) {
   const isSoldOut = stock_quantity === 0
   const whatsappMessage = `Hi! I'm interested in purchasing ${name} for ${formatPrice(price)}.`
   const whatsappLink = getWhatsAppLink(whatsappMessage)
@@ -50,6 +52,9 @@ export function ProductCard({ id, name, price, image_url, stock_quantity }: Prod
             In Stock
           </Badge>
         )}
+        <Badge className="absolute right-3 top-3 border border-primary/30 bg-white/75 text-primary backdrop-blur-md">
+          {PRODUCT_GENDER_LABELS[gender]}
+        </Badge>
         <div className="absolute bottom-3 right-3 rounded-full border border-primary/20 bg-white/75 px-3 py-1 text-xs text-foreground/80 opacity-0 backdrop-blur-md transition duration-300 group-hover:opacity-100">
           Quick view
         </div>

@@ -10,6 +10,7 @@ import { Trash2, Edit2, Plus, Package, DollarSign, AlertCircle } from "lucide-re
 import { ProductForm } from "@/components/admin/product-form"
 import { formatPrice } from "@/lib/constants"
 import { ELEGANCE_BRAND_IMAGE, getSafeProductImage } from "@/lib/local-images"
+import { PRODUCT_GENDER_LABELS, type ProductGender } from "@/lib/product-gender"
 
 interface Product {
   id: number
@@ -19,6 +20,7 @@ interface Product {
   image_url: string
   description: string
   notes: string
+  gender: ProductGender
 }
 
 export default function AdminDashboard() {
@@ -270,10 +272,11 @@ export default function AdminDashboard() {
         ) : (
           <Card className="luxury-glass overflow-hidden">
             <div className="w-full overflow-x-auto">
-              <table className="min-w-[760px] w-full">
+              <table className="min-w-[860px] w-full">
                 <thead>
                   <tr className="border-b border-border bg-white/65">
                     <th className="px-4 py-4 text-left font-semibold sm:px-6">Product</th>
+                    <th className="px-4 py-4 text-left font-semibold sm:px-6">Genre</th>
                     <th className="px-4 py-4 text-left font-semibold sm:px-6">Price</th>
                     <th className="px-4 py-4 text-left font-semibold sm:px-6">Stock</th>
                     <th className="px-4 py-4 text-left font-semibold sm:px-6">Inventory Value</th>
@@ -299,6 +302,11 @@ export default function AdminDashboard() {
                             <p className="max-w-[16rem] truncate text-xs text-foreground/60">{product.description}</p>
                           </div>
                         </div>
+                      </td>
+                      <td className="px-4 py-4 sm:px-6">
+                        <Badge className="border border-primary/20 bg-white/65 text-primary">
+                          {PRODUCT_GENDER_LABELS[product.gender]}
+                        </Badge>
                       </td>
                       <td className="px-4 py-4 font-medium sm:px-6">{formatPrice(product.price)}</td>
                       <td className="px-4 py-4 sm:px-6">

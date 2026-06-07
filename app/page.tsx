@@ -21,7 +21,7 @@ import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { BUSINESS_CONFIG, formatPrice, getWhatsAppLink } from "@/lib/constants"
 import { ELEGANCE_BRAND_IMAGE, getSafeProductImage } from "@/lib/local-images"
-import { type ProductGender, withProductGender } from "@/lib/product-gender"
+import { PRODUCT_GENDER_LABELS, type ProductGender, withProductGender } from "@/lib/product-gender"
 
 type Product = {
   id: number
@@ -122,6 +122,9 @@ function CollectionProductSection({
                   <span className="absolute left-4 top-4 rounded-full border border-white/70 bg-white/78 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8C7140] backdrop-blur-md">
                     {product.stock_quantity > 0 ? "Disponible" : "Rupture"}
                   </span>
+                  <span className="absolute right-4 top-4 rounded-full border border-white/70 bg-white/78 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8C7140] backdrop-blur-md">
+                    {PRODUCT_GENDER_LABELS[product.gender]}
+                  </span>
                 </div>
                 <div className="space-y-4 p-5">
                   <div className="flex items-start justify-between gap-4">
@@ -183,6 +186,7 @@ export default function Home() {
   const heroProduct = products[0]
   const hommeProducts = products.filter((product) => product.gender === "homme")
   const femmeProducts = products.filter((product) => product.gender === "femme")
+  const unisexeProducts = products.filter((product) => product.gender === "unisexe")
   const instagramProducts = products.slice(0, 4)
 
   return (
@@ -322,6 +326,16 @@ export default function Home() {
           products={femmeProducts}
           loading={loading}
         />
+
+        {!loading && unisexeProducts.length > 0 && (
+          <CollectionProductSection
+            badge="Unisexe"
+            title="Collection Unisexe"
+            subtitle="Signatures mixtes modernes et raffinées"
+            products={unisexeProducts}
+            loading={loading}
+          />
+        )}
 
         <section className="px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-7xl">

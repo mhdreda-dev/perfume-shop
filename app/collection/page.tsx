@@ -6,7 +6,7 @@ import { Footer } from "@/components/footer"
 import { ProductCard } from "@/components/product-card"
 import { Button } from "@/components/ui/button"
 import { MotionPress, MotionReveal } from "@/components/luxury-motion"
-import { type ProductGender, withProductGender } from "@/lib/product-gender"
+import { PRODUCT_GENDER_LABELS, type ProductGender, withProductGender } from "@/lib/product-gender"
 import { Gem, SlidersHorizontal, Sparkles } from "lucide-react"
 
 interface Product {
@@ -25,6 +25,7 @@ const categoryFilters: { value: CollectionFilter; label: string }[] = [
   { value: "all", label: "Tous" },
   { value: "homme", label: "Homme" },
   { value: "femme", label: "Femme" },
+  { value: "unisexe", label: "Unisexe" },
 ]
 
 export default function Collection() {
@@ -50,11 +51,7 @@ export default function Collection() {
     fetchProducts()
   }, [])
 
-  const filteredProducts = products.filter((product) => {
-    if (filter === "homme") return product.gender === "homme"
-    if (filter === "femme") return product.gender === "femme"
-    return true
-  })
+  const filteredProducts = filter === "all" ? products : products.filter((product) => product.gender === filter)
   const featuredProducts = filteredProducts.filter((product) => product.stock_quantity > 0).slice(0, 3)
 
   return (
@@ -89,7 +86,7 @@ export default function Collection() {
               <div>
                 <p className="text-sm uppercase tracking-[0.24em] text-primary">Sélection premium</p>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
-                  {filter === "homme" ? "Parfums Homme" : filter === "femme" ? "Parfums Femme" : "Boutique highlights"}
+                  {filter === "all" ? "Boutique highlights" : `Parfums ${PRODUCT_GENDER_LABELS[filter]}`}
                 </h2>
               </div>
               <Gem className="hidden h-8 w-8 text-primary/70 sm:block" />

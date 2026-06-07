@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getPerfumeById, updatePerfume, deletePerfume } from "@/lib/db"
+import { normalizeProductGender } from "@/lib/product-gender"
 import { getSession } from "@/lib/session"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -43,9 +44,14 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     const body = await request.json()
     const { name, price, stock_quantity, image_url, description, notes } = body
+    const gender = body.gender === undefined ? "unisexe" : normalizeProductGender(body.gender)
 
     if (!name || !price || stock_quantity === undefined) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    }
+
+    if (!gender) {
+      return NextResponse.json({ error: "Invalid gender" }, { status: 400 })
     }
 
     const perfume = await updatePerfume(
@@ -56,6 +62,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       image_url || "",
       description || "",
       notes || "",
+      gender,
     )
 
     return NextResponse.json(perfume, { status: 200 })

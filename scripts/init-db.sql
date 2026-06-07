@@ -7,9 +7,11 @@ CREATE TABLE IF NOT EXISTS perfumes (
   image_url TEXT,
   description TEXT,
   notes TEXT,
+  gender VARCHAR(20) NOT NULL DEFAULT 'unisexe',
   is_active BOOLEAN DEFAULT true,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT perfumes_gender_check CHECK (gender IN ('homme', 'femme', 'unisexe'))
 );
 
 -- Create admin users table
