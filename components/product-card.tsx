@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -24,6 +25,17 @@ export function ProductCard({ id, name, price, image_url, stock_quantity, gender
   const whatsappLink = getWhatsAppLink(whatsappMessage)
   const reduceMotion = useReducedMotion()
   const productImage = getSafeProductImage(image_url)
+  const [canHoverImage, setCanHoverImage] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 640px) and (hover: hover) and (pointer: fine)")
+    const updateHoverState = () => setCanHoverImage(mediaQuery.matches)
+
+    updateHoverState()
+    mediaQuery.addEventListener("change", updateHoverState)
+
+    return () => mediaQuery.removeEventListener("change", updateHoverState)
+  }, [])
 
   return (
     <motion.div
@@ -35,15 +47,15 @@ export function ProductCard({ id, name, price, image_url, stock_quantity, gender
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Image Container */}
-      <div className="relative aspect-[4/5] max-h-[26rem] overflow-hidden bg-secondary/10">
+      <div className="relative h-[19.5rem] overflow-hidden bg-secondary/10 min-[390px]:h-[21rem] sm:aspect-[4/5] sm:h-auto sm:max-h-[26rem]">
         <motion.img
           src={productImage}
           alt={name}
-          className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+          className="h-full w-full object-contain object-center transition duration-700 sm:object-cover sm:group-hover:scale-[1.04]"
           onError={(event) => {
             event.currentTarget.src = ELEGANCE_BRAND_IMAGE
           }}
-          whileHover={reduceMotion ? undefined : { scale: 1.08 }}
+          whileHover={reduceMotion || !canHoverImage ? undefined : { scale: 1.08 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         />
         <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-foreground/25 to-transparent" />
