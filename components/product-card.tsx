@@ -75,13 +75,13 @@ export function ProductCard({ id, name, price, image_url, stock_quantity, gender
         </div>
 
         {/* Stock Status */}
-        <div className="text-sm text-foreground/60">
-          {isSoldOut ? (
+        {isSoldOut ? (
+          <div className="text-sm text-foreground/60">
             <span className="text-destructive font-medium">Out of Stock</span>
-          ) : (
-            <span>{stock_quantity} in stock</span>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div aria-hidden="true" className="min-h-5" />
+        )}
 
         {/* Actions */}
         <div className="grid grid-cols-2 gap-2">

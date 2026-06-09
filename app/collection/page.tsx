@@ -6,7 +6,7 @@ import { Footer } from "@/components/footer"
 import { ProductCard } from "@/components/product-card"
 import { Button } from "@/components/ui/button"
 import { MotionPress, MotionReveal } from "@/components/luxury-motion"
-import { PRODUCT_GENDER_LABELS, type ProductGender, withProductGender } from "@/lib/product-gender"
+import { type ProductGender, withProductGender } from "@/lib/product-gender"
 import { Gem, SlidersHorizontal, Sparkles } from "lucide-react"
 
 interface Product {
@@ -52,7 +52,6 @@ export default function Collection() {
   }, [])
 
   const filteredProducts = filter === "all" ? products : products.filter((product) => product.gender === filter)
-  const featuredProducts = filteredProducts.filter((product) => product.stock_quantity > 0).slice(0, 3)
 
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden">
@@ -79,25 +78,6 @@ export default function Collection() {
             </div>
           </MotionReveal>
         </div>
-
-        {!loading && !error && featuredProducts.length > 0 && (
-          <MotionReveal className="mx-auto mb-8 max-w-7xl sm:mb-10">
-            <div className="mb-5 flex items-center justify-between gap-4">
-              <div>
-                <p className="text-sm uppercase tracking-[0.24em] text-primary">Sélection premium</p>
-                <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
-                  {filter === "all" ? "Boutique highlights" : `Parfums ${PRODUCT_GENDER_LABELS[filter]}`}
-                </h2>
-              </div>
-              <Gem className="hidden h-8 w-8 text-primary/70 sm:block" />
-            </div>
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-              {featuredProducts.map((product) => (
-                <ProductCard key={`featured-${product.id}`} {...product} />
-              ))}
-            </div>
-          </MotionReveal>
-        )}
 
         {/* Filters */}
         <MotionReveal className="mx-auto mb-7 max-w-7xl overflow-x-auto pb-2 sm:mb-8 [scrollbar-width:thin]">
