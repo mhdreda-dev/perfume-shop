@@ -48,11 +48,11 @@ export function ProductCard({ id, name, price, image_url, stock_quantity, gender
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Image Container */}
-      <div className="relative h-[18rem] shrink-0 overflow-hidden bg-[linear-gradient(145deg,#fffdf9,#e8dccb)] sm:aspect-[4/5] sm:h-auto sm:max-h-[26rem]">
+      <div className="relative aspect-[5/4] shrink-0 overflow-hidden bg-[#eee3d3] sm:aspect-[4/5] sm:max-h-[26rem] sm:bg-[linear-gradient(145deg,#fffdf9,#e8dccb)]">
         <motion.img
           src={productImage}
           alt={`${name} - parfum original Elegance Parfum`}
-          className="h-full w-full object-contain object-center transition duration-700 sm:object-cover sm:group-hover:scale-[1.04]"
+          className="h-full w-full object-contain object-center mix-blend-multiply transition duration-700 sm:object-cover sm:mix-blend-normal sm:group-hover:scale-[1.04]"
           onError={(event) => {
             event.currentTarget.src = ELEGANCE_BRAND_IMAGE
           }}
@@ -61,11 +61,11 @@ export function ProductCard({ id, name, price, image_url, stock_quantity, gender
         />
         <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-foreground/20 to-transparent sm:h-20" />
         {!isSoldOut && (
-          <Badge className="absolute left-3 top-3 inline-flex min-h-7 items-center border border-primary/30 bg-white/88 px-2.5 text-[0.65rem] uppercase tracking-[0.08em] text-primary backdrop-blur-md sm:text-xs sm:normal-case sm:tracking-normal">
+          <Badge data-product-badge className="absolute left-3 top-3 inline-flex h-7 max-w-[46%] items-center whitespace-nowrap border border-primary/30 bg-white/88 px-2.5 text-[0.65rem] uppercase tracking-[0.08em] text-primary backdrop-blur-md sm:h-auto sm:max-w-none sm:text-xs sm:normal-case sm:tracking-normal">
             Disponible
           </Badge>
         )}
-        <Badge className="absolute right-3 top-3 inline-flex min-h-7 items-center border border-primary/30 bg-white/88 px-2.5 text-[0.65rem] uppercase tracking-[0.08em] text-primary backdrop-blur-md sm:text-xs sm:normal-case sm:tracking-normal">
+        <Badge data-product-badge className="absolute right-3 top-3 inline-flex h-7 max-w-[46%] items-center whitespace-nowrap border border-primary/30 bg-white/88 px-2.5 text-[0.65rem] uppercase tracking-[0.08em] text-primary backdrop-blur-md sm:h-auto sm:max-w-none sm:text-xs sm:normal-case sm:tracking-normal">
           {PRODUCT_GENDER_LABELS[gender]}
         </Badge>
         <div className="absolute bottom-3 right-3 hidden rounded-full border border-primary/20 bg-white/82 px-3 py-1 text-xs text-foreground/80 opacity-0 backdrop-blur-md transition duration-300 group-hover:opacity-100 sm:block">

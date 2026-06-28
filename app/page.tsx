@@ -155,15 +155,15 @@ function CollectionProductSection({
                   index === 2 ? "hidden md:flex" : "flex"
                 }`}
               >
-                <div className="relative h-[17rem] shrink-0 overflow-hidden bg-[linear-gradient(145deg,#fffdf9,#e8dccb)] sm:aspect-[4/5] sm:h-auto">
+                <div className="relative aspect-[5/4] shrink-0 overflow-hidden bg-[#eee3d3] sm:aspect-[4/5] sm:bg-[linear-gradient(145deg,#fffdf9,#e8dccb)]">
                   <ProductImage
                     product={product}
-                    className="h-full w-full object-contain object-center transition duration-700 sm:object-cover sm:group-hover:scale-[1.045]"
+                    className="h-full w-full object-contain object-center mix-blend-multiply transition duration-700 sm:object-cover sm:mix-blend-normal sm:group-hover:scale-[1.045]"
                   />
-                  <span className="absolute left-3 top-3 inline-flex min-h-7 items-center rounded-full border border-white/70 bg-white/86 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-[#8C7140] backdrop-blur-md sm:left-4 sm:top-4 sm:px-3 sm:text-xs sm:tracking-[0.16em]">
+                  <span data-product-badge className="absolute left-3 top-3 inline-flex h-7 max-w-[46%] items-center whitespace-nowrap rounded-full border border-white/70 bg-white/86 px-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-[#8C7140] backdrop-blur-md sm:left-4 sm:top-4 sm:h-auto sm:max-w-none sm:px-3 sm:py-1 sm:text-xs sm:tracking-[0.16em]">
                     {product.stock_quantity > 0 ? "Disponible" : "Rupture"}
                   </span>
-                  <span className="absolute right-3 top-3 inline-flex min-h-7 items-center rounded-full border border-white/70 bg-white/86 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-[#8C7140] backdrop-blur-md sm:right-4 sm:top-4 sm:px-3 sm:text-xs sm:tracking-[0.16em]">
+                  <span data-product-badge className="absolute right-3 top-3 inline-flex h-7 max-w-[46%] items-center whitespace-nowrap rounded-full border border-white/70 bg-white/86 px-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-[#8C7140] backdrop-blur-md sm:right-4 sm:top-4 sm:h-auto sm:max-w-none sm:px-3 sm:py-1 sm:text-xs sm:tracking-[0.16em]">
                     {PRODUCT_GENDER_LABELS[product.gender]}
                   </span>
                 </div>

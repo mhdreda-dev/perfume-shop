@@ -58,7 +58,7 @@ export default function Collection() {
     <div className="flex min-h-screen flex-col overflow-x-hidden">
       <Navigation />
 
-      <main className="w-full flex-1 overflow-x-hidden px-4 py-6 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
+      <main className="w-full flex-1 overflow-x-hidden px-4 pt-6 pb-[calc(2rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-10 lg:px-8 lg:py-14">
         {/* Header */}
         <div className="mx-auto mb-7 max-w-7xl sm:mb-10">
           <MotionReveal className="luxury-glass overflow-hidden rounded-xl p-5 sm:rounded-2xl sm:p-8 lg:p-10">
