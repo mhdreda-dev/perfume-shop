@@ -57,13 +57,13 @@ export default function Collection() {
     <div className="flex min-h-screen flex-col overflow-x-hidden">
       <Navigation />
 
-      <main className="w-full flex-1 overflow-x-hidden px-4 py-7 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
+      <main className="w-full flex-1 overflow-x-hidden px-4 py-6 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
         {/* Header */}
         <div className="mx-auto mb-7 max-w-7xl sm:mb-10">
           <MotionReveal className="luxury-glass overflow-hidden rounded-xl p-5 sm:rounded-2xl sm:p-8 lg:p-10">
             <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-primary sm:text-sm sm:tracking-[0.28em]">
               <Sparkles className="h-4 w-4" />
-              Perfume collection
+              Collection de parfums
             </p>
             <div className="mt-4 flex flex-col justify-between gap-5 md:flex-row md:items-end">
               <div>
@@ -72,7 +72,7 @@ export default function Collection() {
                   Découvrez nos parfums originaux importés d'Espagne, classés par signatures homme et femme.
                 </p>
               </div>
-              <div className="w-fit rounded-lg border border-primary/25 bg-primary/10 px-3 py-2 text-sm text-primary sm:rounded-xl sm:px-4 sm:py-3">
+              <div className="w-fit rounded-lg border border-primary/25 bg-primary/10 px-3 py-2 text-sm font-medium text-primary sm:rounded-xl sm:px-4 sm:py-3">
                 {filteredProducts.length} parfums
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function Collection() {
 
         {/* Filters */}
         <MotionReveal className="mx-auto mb-7 max-w-7xl overflow-x-auto pb-2 sm:mb-8 [scrollbar-width:thin]">
-          <div className="inline-flex min-w-max items-center gap-2 rounded-full border border-primary/20 bg-white/65 p-1.5 shadow-lg shadow-primary/10 backdrop-blur-xl sm:gap-3">
+          <div className="inline-flex min-w-max items-center gap-2 rounded-full border border-primary/20 bg-white/72 p-1.5 shadow-lg shadow-primary/10 backdrop-blur-xl sm:gap-3">
             <div className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm text-foreground/70 sm:inline-flex">
               <SlidersHorizontal className="h-4 w-4 text-primary" />
               Filtrer
@@ -92,10 +92,11 @@ export default function Collection() {
                   variant={filter === option.value ? "default" : "ghost"}
                   onClick={() => setFilter(option.value)}
                   size="sm"
+                  aria-pressed={filter === option.value}
                   className={
                     filter === option.value
-                      ? "min-h-10 rounded-full bg-primary px-5 text-primary-foreground shadow-md shadow-primary/15 hover:bg-accent"
-                      : "min-h-10 rounded-full px-5 text-foreground/72 hover:bg-secondary/70 hover:text-foreground"
+                      ? "min-h-11 rounded-full bg-primary px-5 text-primary-foreground shadow-md shadow-primary/15 hover:bg-accent"
+                      : "min-h-11 rounded-full px-5 text-foreground/72 hover:bg-secondary/70 hover:text-foreground"
                   }
                 >
                   {option.label}
@@ -116,8 +117,8 @@ export default function Collection() {
 
         {/* Error State */}
         {error && (
-          <div className="py-16 text-center text-destructive">
-            <p>Unable to load products. Please try again later.</p>
+          <div className="py-16 text-center text-destructive" role="alert">
+            <p>Impossible de charger les parfums. Veuillez réessayer plus tard.</p>
           </div>
         )}
 

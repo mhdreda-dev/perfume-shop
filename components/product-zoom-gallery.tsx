@@ -45,7 +45,7 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           />
           <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-foreground/20 to-transparent" />
-          <div className="absolute left-3 top-3 luxury-badge sm:left-4 sm:top-4">Gallery</div>
+          <div className="absolute left-3 top-3 luxury-badge sm:left-4 sm:top-4">Galerie</div>
           <div
             className={`pointer-events-none absolute hidden h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/40 shadow-2xl shadow-primary/20 ring-1 ring-primary/20 backdrop-blur-sm transition-opacity duration-200 lg:block ${
               lens.visible ? "opacity-100" : "opacity-0"
@@ -60,12 +60,12 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
             }}
           />
           <div className="absolute bottom-4 right-4 hidden rounded-full border border-primary/20 bg-white/75 px-3 py-1 text-xs text-foreground/75 backdrop-blur-md lg:block">
-            Hover to inspect
+            Survolez pour inspecter
           </div>
           {isSoldOut && (
             <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm">
               <Badge variant="destructive" className="px-6 py-3 text-2xl">
-                Sold Out
+                Rupture
               </Badge>
             </div>
           )}
@@ -81,7 +81,7 @@ export function ProductZoomGallery({ images, productName, isSoldOut }: ProductZo
             className={`aspect-square overflow-hidden rounded-lg border bg-white/65 p-1 transition hover:border-primary/60 sm:rounded-xl ${
               selectedImage === index ? "border-primary" : "border-border"
             }`}
-            aria-label={`View product image ${index + 1}`}
+            aria-label={`Voir l'image produit ${index + 1}`}
             whileTap={reduceMotion ? undefined : { scale: 0.96 }}
           >
             <img
