@@ -5,9 +5,9 @@ import { MotionReveal } from "@/components/luxury-motion"
 
 export function Footer() {
   return (
-    <footer className="overflow-x-hidden border-t border-border bg-white/72 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] text-foreground backdrop-blur-xl sm:py-12 lg:py-14">
+    <footer className="overflow-x-hidden border-t border-border bg-white/72 pt-3 pb-[calc(6.5rem+env(safe-area-inset-bottom))] text-foreground backdrop-blur-xl sm:py-12 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-sm rounded-2xl border border-[#C8A96B]/24 bg-white/86 p-2.5 text-center shadow-xl shadow-[#C8A96B]/12 backdrop-blur-xl sm:hidden">
+        <div className="mx-auto max-w-sm rounded-2xl border border-[#C8A96B]/24 bg-white/86 p-3 text-center shadow-xl shadow-[#C8A96B]/12 backdrop-blur-xl sm:hidden">
           <div className="flex items-center justify-center gap-2">
             <span className="h-7 w-7 shrink-0 overflow-hidden rounded-full border border-[#C8A96B]/35 bg-white shadow-sm">
               <img src="/elegance-parfum-logo.jpeg" alt="Elegance Parfum logo" className="h-full w-full object-cover" />

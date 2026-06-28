@@ -24,6 +24,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { Footer } from "@/components/footer"
 import { MotionFloat, MotionPress, MotionReveal } from "@/components/luxury-motion"
 import { Navigation } from "@/components/navigation"
+import { ScrollToTop } from "@/components/scroll-to-top"
 import { Button } from "@/components/ui/button"
 import { BUSINESS_CONFIG, formatPrice, getWhatsAppLink } from "@/lib/constants"
 import { ELEGANCE_BRAND_IMAGE, getSafeProductImage } from "@/lib/local-images"
@@ -127,20 +128,20 @@ function CollectionProductSection({
   loading: boolean
 }) {
   return (
-    <section className="px-4 py-9 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+    <section className="px-4 py-7 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
-        <MotionReveal className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <MotionReveal className="mb-5 flex flex-col justify-between gap-2 sm:mb-8 sm:gap-5 md:flex-row md:items-end">
           <div className="min-w-0">
             <span className="luxury-badge">{badge}</span>
-            <h2 className="mt-4 max-w-2xl text-3xl leading-tight sm:text-5xl">{title}</h2>
+            <h2 className="mt-2 max-w-2xl text-[1.75rem] leading-tight sm:mt-4 sm:text-5xl">{title}</h2>
           </div>
-          <p className="max-w-xl text-[#2A2A2A]/65">{subtitle}</p>
+          <p className="max-w-xl text-sm text-[#2A2A2A]/65 sm:text-base">{subtitle}</p>
         </MotionReveal>
 
         {loading ? (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {Array.from({ length: 3 }).map((_, index) => (
-              <div key={index} className="premium-skeleton h-[30rem]" />
+              <div key={index} className="premium-skeleton h-[26rem] sm:h-[30rem]" />
             ))}
           </div>
         ) : products.length > 0 ? (
@@ -149,23 +150,26 @@ function CollectionProductSection({
               <MotionReveal
                 key={product.id}
                 delay={index * 0.08}
-                className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#C8A96B]/22 bg-white/68 shadow-xl shadow-[#C8A96B]/10 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#C8A96B]/45 hover:shadow-[#C8A96B]/18"
+                data-product-card
+                className={`group h-full flex-col overflow-hidden rounded-lg border border-[#C8A96B]/22 bg-white/68 shadow-xl shadow-[#C8A96B]/10 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#C8A96B]/45 hover:shadow-[#C8A96B]/18 ${
+                  index === 2 ? "hidden md:flex" : "flex"
+                }`}
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#E8DCCB]">
+                <div className="relative h-[17rem] shrink-0 overflow-hidden bg-[linear-gradient(145deg,#fffdf9,#e8dccb)] sm:aspect-[4/5] sm:h-auto">
                   <ProductImage
                     product={product}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.045]"
+                    className="h-full w-full object-contain object-center transition duration-700 sm:object-cover sm:group-hover:scale-[1.045]"
                   />
-                  <span className="absolute left-4 top-4 rounded-full border border-white/70 bg-white/78 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8C7140] backdrop-blur-md">
+                  <span className="absolute left-3 top-3 inline-flex min-h-7 items-center rounded-full border border-white/70 bg-white/86 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-[#8C7140] backdrop-blur-md sm:left-4 sm:top-4 sm:px-3 sm:text-xs sm:tracking-[0.16em]">
                     {product.stock_quantity > 0 ? "Disponible" : "Rupture"}
                   </span>
-                  <span className="absolute right-4 top-4 rounded-full border border-white/70 bg-white/78 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8C7140] backdrop-blur-md">
+                  <span className="absolute right-3 top-3 inline-flex min-h-7 items-center rounded-full border border-white/70 bg-white/86 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-[#8C7140] backdrop-blur-md sm:right-4 sm:top-4 sm:px-3 sm:text-xs sm:tracking-[0.16em]">
                     {PRODUCT_GENDER_LABELS[product.gender]}
                   </span>
                 </div>
-                <div className="flex flex-1 flex-col space-y-4 p-5">
+                <div className="flex min-h-[13rem] flex-1 flex-col space-y-3 p-4 sm:min-h-0 sm:space-y-4 sm:p-5">
                   <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-xl leading-tight sm:text-2xl">{product.name}</h3>
+                    <h3 className="line-clamp-2 min-h-[2.5rem] text-xl leading-tight sm:min-h-0 sm:text-2xl">{product.name}</h3>
                     <p className="shrink-0 text-base font-semibold text-[#8C7140] sm:text-lg">
                       {formatPrice(product.price)}
                     </p>
@@ -195,6 +199,11 @@ function CollectionProductSection({
           <MotionReveal className="rounded-lg border border-[#C8A96B]/22 bg-white/62 p-8 text-center shadow-lg shadow-[#C8A96B]/8">
             <p className="text-[#2A2A2A]/65">Aucun parfum dans cette collection pour le moment.</p>
           </MotionReveal>
+        )}
+        {!loading && products.length > 0 && (
+          <Button asChild variant="outline" className="mt-4 min-h-11 w-full border-[#C8A96B]/35 bg-white/70 md:hidden">
+            <Link href="/collection">Voir toute la collection</Link>
+          </Button>
         )}
       </div>
     </section>
@@ -243,15 +252,23 @@ export default function Home() {
   const femmeProducts = products.filter((product) => product.gender === "femme")
   const unisexeProducts = products.filter((product) => product.gender === "unisexe")
   const instagramProducts = products.slice(0, 4)
+  const orderSteps = [
+    { icon: ShoppingBag, title: "Choisissez", text: "Repérez votre parfum." },
+    { icon: MessageCircle, title: "Confirmez", text: "Écrivez-nous sur WhatsApp." },
+    { icon: Truck, title: "Recevez", text: "Livraison suivie au Maroc." },
+  ]
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#FAF7F2] text-[#2A2A2A]">
+      <div className="flex min-h-7 items-center justify-center bg-[#2A2A2A] px-3 py-1 text-center text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white sm:hidden">
+        Livraison au Maroc · Conseil direct sur WhatsApp
+      </div>
       <Navigation />
 
-      <main className="pb-24 md:pb-0">
+      <main className="pb-24 sm:pb-0">
         <section
           ref={heroRef}
-          className="relative isolate flex min-h-[760px] overflow-hidden px-4 py-5 sm:min-h-[780px] sm:px-6 sm:py-8 lg:min-h-[calc(100svh-12rem)] lg:px-8 lg:py-8 xl:min-h-[720px]"
+          className="relative isolate flex min-h-[560px] overflow-hidden px-4 py-4 sm:min-h-[780px] sm:px-6 sm:py-8 lg:min-h-[calc(100svh-12rem)] lg:px-8 lg:py-8 xl:min-h-[720px]"
         >
           <motion.div
             aria-hidden="true"
@@ -309,7 +326,7 @@ export default function Home() {
                 initial={reduceMotion ? false : { opacity: 0, y: 22 }}
                 animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-4 max-w-[21.5rem] text-[2.04rem] font-semibold leading-[0.98] text-[#241D15] text-balance min-[390px]:max-w-[23rem] min-[390px]:text-[2.24rem] min-[430px]:max-w-[25rem] min-[430px]:text-[2.42rem] sm:mt-5 sm:max-w-4xl sm:text-5xl lg:text-6xl xl:text-7xl"
+                className="mt-3 max-w-[21.5rem] text-[1.92rem] font-semibold leading-[1] text-[#241D15] text-balance min-[390px]:max-w-[23rem] min-[390px]:text-[2.04rem] min-[430px]:max-w-[25rem] min-[430px]:text-[2.16rem] sm:mt-5 sm:max-w-4xl sm:text-5xl lg:text-6xl xl:text-7xl"
               >
                 L’art du parfum, signé Elegance.
               </motion.h1>
@@ -317,7 +334,7 @@ export default function Home() {
                 initial={reduceMotion ? false : { opacity: 0, y: 18 }}
                 animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.62, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-3 max-w-[22rem] text-[0.88rem] leading-6 text-[#4B4034]/80 min-[430px]:max-w-[24rem] sm:mt-4 sm:max-w-2xl sm:text-base sm:leading-7 lg:text-lg lg:leading-8"
+                className="mt-2 max-w-[22rem] text-[0.82rem] leading-5 text-[#4B4034]/80 min-[430px]:max-w-[24rem] sm:mt-4 sm:max-w-2xl sm:text-base sm:leading-7 lg:text-lg lg:leading-8"
               >
                 Une sélection premium de parfums pour homme et femme, avec conseil WhatsApp et livraison au Maroc.
               </motion.p>
@@ -328,7 +345,7 @@ export default function Home() {
               initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 24 }}
               animate={reduceMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 mx-auto -mt-1 h-[226px] w-full max-w-[22rem] min-[390px]:h-[238px] min-[430px]:h-[252px] min-[430px]:max-w-[24rem] sm:-mt-5 sm:h-[330px] sm:max-w-[36rem] lg:-mt-6 lg:h-[370px] lg:max-w-[46rem]"
+              className="relative z-10 mx-auto -mt-2 h-[180px] w-full max-w-[22rem] min-[390px]:h-[188px] min-[430px]:h-[196px] min-[430px]:max-w-[24rem] sm:-mt-5 sm:h-[330px] sm:max-w-[36rem] lg:-mt-6 lg:h-[370px] lg:max-w-[46rem]"
               style={hasMounted ? { y: bottleY, scale: bottleScale } : undefined}
             >
               <motion.div
@@ -384,7 +401,7 @@ export default function Home() {
                       repeat: reduceMotion ? 0 : Infinity,
                       ease: [0.45, 0, 0.18, 1],
                     }}
-                    className="h-[214px] w-[140px] min-[390px]:h-[226px] min-[390px]:w-[148px] min-[430px]:h-[238px] min-[430px]:w-[156px] sm:h-[284px] sm:w-[184px] lg:h-[326px] lg:w-[210px]"
+                    className="h-[172px] w-[112px] min-[390px]:h-[180px] min-[390px]:w-[118px] min-[430px]:h-[188px] min-[430px]:w-[124px] sm:h-[284px] sm:w-[184px] lg:h-[326px] lg:w-[210px]"
                   >
                     <motion.div
                       animate={
@@ -472,7 +489,7 @@ export default function Home() {
                 whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.58, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-3 grid w-full max-w-[22rem] grid-cols-3 gap-2 min-[430px]:max-w-[24rem] sm:mt-4 sm:max-w-xl"
+                className="mt-3 hidden w-full max-w-[22rem] grid-cols-3 gap-2 min-[430px]:max-w-[24rem] sm:mt-4 sm:grid sm:max-w-xl"
               >
                 {trustItems.slice(0, 3).map((item) => (
                   <div
@@ -487,16 +504,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-4 py-9 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+        <section className="px-4 py-6 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-7xl">
-            <MotionReveal className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <MotionReveal className="mb-4 flex flex-col justify-between gap-2 text-center sm:mb-8 sm:gap-5 sm:text-left md:flex-row md:items-end">
               <div>
                 <span className="luxury-badge">Garanties premium</span>
-                <h2 className="mt-4 max-w-3xl text-3xl leading-tight sm:text-5xl">
+                <h2 className="mt-2 max-w-3xl text-[1.7rem] leading-tight sm:mt-4 sm:text-5xl">
                   Une commande simple, sûre et élégante.
                 </h2>
               </div>
-              <p className="max-w-xl text-[#2A2A2A]/65">
+              <p className="hidden max-w-xl text-[#2A2A2A]/65 sm:block">
                 Les garanties essentielles sont visibles avant l'achat pour réduire l'hésitation et clarifier la promesse.
               </p>
             </MotionReveal>
@@ -507,13 +524,13 @@ export default function Home() {
                   <MotionReveal
                     key={guarantee.title}
                     delay={index * 0.06}
-                    className="flex h-full min-w-0 flex-col rounded-lg border border-[#C8A96B]/22 bg-white/68 p-3 shadow-lg shadow-[#C8A96B]/8 backdrop-blur-xl md:p-5"
+                    className="flex h-[7.25rem] min-w-0 flex-col items-center justify-center rounded-lg border border-[#C8A96B]/22 bg-white/68 p-2 text-center shadow-lg shadow-[#C8A96B]/8 backdrop-blur-xl sm:h-full sm:items-start sm:justify-start sm:p-3 sm:text-left md:p-5"
                   >
-                    <div className="mb-3 grid h-9 w-9 place-items-center rounded-full border border-[#C8A96B]/28 bg-[#F8F4EE] text-[#C8A96B] md:mb-5 md:h-12 md:w-12">
+                    <div className="mb-2 grid h-8 w-8 place-items-center rounded-full border border-[#C8A96B]/28 bg-[#F8F4EE] text-[#C8A96B] sm:mb-3 sm:h-9 sm:w-9 md:mb-5 md:h-12 md:w-12">
                       <Icon className="h-4 w-4 md:h-5 md:w-5" />
                     </div>
-                    <h3 className="font-sans text-[0.8rem] font-semibold leading-tight md:text-lg">{guarantee.title}</h3>
-                    <p className="mt-2 break-words hyphens-auto text-xs! leading-[1.45]! text-[#2A2A2A]/68 md:mt-3 md:text-sm! md:leading-7!">
+                    <h3 className="font-sans text-[0.7rem] font-semibold leading-[1.25] min-[390px]:text-[0.74rem] sm:text-[0.8rem] md:text-lg">{guarantee.title}</h3>
+                    <p className="mt-2 hidden break-words hyphens-auto text-xs! leading-[1.45]! text-[#2A2A2A]/68 sm:block md:mt-3 md:text-sm! md:leading-7!">
                       {guarantee.text}
                     </p>
                   </MotionReveal>
@@ -549,7 +566,81 @@ export default function Home() {
           />
         )}
 
-        <section className="px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+        <section className="px-4 py-7 sm:hidden">
+          <div className="mx-auto max-w-lg">
+            <MotionReveal className="mb-4 text-center">
+              <span className="luxury-badge">Commande facile</span>
+              <h2 className="mt-2 text-[1.7rem] leading-tight">Votre parfum en 3 étapes.</h2>
+            </MotionReveal>
+            <div className="grid grid-cols-3 gap-2">
+              {orderSteps.map((step, index) => {
+                const Icon = step.icon
+                return (
+                  <MotionReveal
+                    key={step.title}
+                    delay={index * 0.05}
+                    className="flex min-h-[8.5rem] min-w-0 flex-col items-center rounded-lg border border-[#C8A96B]/22 bg-white/68 p-2.5 text-center shadow-lg shadow-[#C8A96B]/8"
+                  >
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-[#C8A96B]/16 text-[#8C7140]">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <h3 className="mt-2 font-sans text-xs font-semibold">{index + 1}. {step.title}</h3>
+                    <p className="mt-1 text-[0.68rem]! leading-4! text-[#2A2A2A]/62">{step.text}</p>
+                  </MotionReveal>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-7 sm:hidden">
+          <MotionReveal className="mx-auto max-w-lg">
+            <div className="mb-4 text-center">
+              <span className="luxury-badge">FAQ</span>
+              <h2 className="mt-2 text-[1.7rem] leading-tight">Questions fréquentes.</h2>
+            </div>
+            <div className="space-y-2">
+              {[
+                ["Les parfums sont-ils originaux ?", "Oui, notre sélection est composée de parfums originaux importés d’Espagne."],
+                ["Comment commander ?", "Choisissez votre parfum puis confirmez simplement la commande sur WhatsApp."],
+                ["Livrez-vous partout au Maroc ?", "Oui, nous confirmons avec vous les détails et le délai avant l’envoi."],
+              ].map(([question, answer]) => (
+                <details key={question} className="group rounded-lg border border-[#C8A96B]/22 bg-white/70 px-4 py-3 shadow-sm">
+                  <summary className="cursor-pointer list-none pr-4 text-sm font-semibold marker:hidden">{question}</summary>
+                  <p className="mt-2 text-xs! leading-5! text-[#2A2A2A]/65">{answer}</p>
+                </details>
+              ))}
+            </div>
+          </MotionReveal>
+        </section>
+
+        <section className="px-4 py-7 sm:hidden">
+          <div className="mx-auto max-w-lg">
+            <MotionReveal className="mb-4 text-center">
+              <span className="luxury-badge">Avis clients</span>
+              <h2 className="mt-2 text-[1.7rem] leading-tight">Ils nous font confiance.</h2>
+            </MotionReveal>
+            <div className="grid gap-3">
+              {testimonials.slice(0, 2).map((testimonial, index) => (
+                <MotionReveal
+                  key={testimonial.name}
+                  delay={index * 0.05}
+                  className="rounded-lg border border-[#C8A96B]/22 bg-white/68 p-4 shadow-lg shadow-[#C8A96B]/8"
+                >
+                  <div className="mb-2 flex gap-1 text-[#C8A96B]" aria-label="Avis cinq étoiles">
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <Star key={starIndex} className="h-3.5 w-3.5 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-xs! leading-5! text-[#2A2A2A]/72">"{testimonial.text}"</p>
+                  <div className="mt-2 font-sans text-xs font-semibold">{testimonial.name}</div>
+                </MotionReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="hidden px-4 py-10 sm:block sm:px-6 sm:py-14 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-7xl">
             <MotionReveal className="mb-10 text-center">
               <span className="luxury-badge">Catégories</span>
@@ -576,7 +667,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+        <section className="hidden px-4 py-10 sm:block sm:px-6 sm:py-14 lg:px-8 lg:py-20">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <MotionReveal className="rounded-lg border border-[#C8A96B]/22 bg-white/60 p-5 shadow-2xl shadow-[#C8A96B]/10 backdrop-blur-xl sm:p-8">
               <span className="luxury-badge">Pourquoi nous choisir</span>
@@ -587,7 +678,7 @@ export default function Home() {
             </MotionReveal>
             <MotionReveal delay={0.08}>
               <div className="grid gap-4">
-                {whyChooseUs.map((item, index) => {
+                {whyChooseUs.map((item) => {
                   const Icon = item.icon
                   return (
                   <div key={item.title} className="flex gap-4 rounded-lg border border-[#C8A96B]/22 bg-white/60 p-4 shadow-lg shadow-[#C8A96B]/8 backdrop-blur-xl">
@@ -606,7 +697,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+        <section className="hidden px-4 py-10 sm:block sm:px-6 sm:py-14 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-7xl">
             <MotionReveal className="mb-8 text-center">
               <span className="luxury-badge">Avis clients</span>
@@ -637,7 +728,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+        <section className="hidden px-4 py-10 sm:block sm:px-6 sm:py-14 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-7xl">
             <MotionReveal className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
               <div>
@@ -672,18 +763,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-4 py-3 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
-          <MotionReveal className="mx-auto grid max-w-7xl gap-2 rounded-lg border border-[#C8A96B]/28 bg-white/70 p-2.5 shadow-xl shadow-[#C8A96B]/10 backdrop-blur-xl sm:gap-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <section className="px-4 py-7 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+          <MotionReveal className="mx-auto grid max-w-7xl gap-3 rounded-lg border border-[#C8A96B]/28 bg-white/70 p-4 text-center shadow-xl shadow-[#C8A96B]/10 backdrop-blur-xl sm:gap-6 sm:p-8 sm:text-left lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <span className="luxury-badge">Conseil personnalisé</span>
-              <h2 className="mt-1.5 text-xl leading-tight sm:mt-4 sm:text-5xl">Besoin d'un conseil parfum ?</h2>
-              <p className="mt-4 hidden max-w-2xl text-[#2A2A2A]/65 sm:block sm:text-base sm:leading-7">
+              <h2 className="mt-2 text-[1.7rem] leading-tight sm:mt-4 sm:text-5xl">Besoin d'un conseil parfum ?</h2>
+              <p className="mx-auto mt-2 max-w-sm text-xs! leading-5! text-[#2A2A2A]/65 sm:mx-0 sm:mt-4 sm:max-w-2xl sm:text-base! sm:leading-7!">
                 Parlez-nous de votre style, de votre budget en DH et de l'occasion. Nous vous recommandons le parfum
                 original le plus adapté.
               </p>
             </div>
             <MotionPress>
-              <Button asChild size="sm" className="h-8 w-full bg-[#25D366] px-3 text-xs text-white shadow-lg shadow-[#25D366]/15 hover:bg-[#1fb457] sm:h-12 sm:w-auto sm:px-7 sm:text-base">
+              <Button asChild size="sm" className="min-h-11 w-full bg-[#25D366] px-3 text-sm text-white shadow-lg shadow-[#25D366]/15 hover:bg-[#1fb457] sm:h-12 sm:w-auto sm:px-7 sm:text-base">
                 <a href={adviceMessage} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   WhatsApp
@@ -704,6 +795,7 @@ export default function Home() {
         </Button>
       </div>
 
+      <ScrollToTop />
       <Footer />
     </div>
   )

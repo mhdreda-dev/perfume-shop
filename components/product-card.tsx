@@ -39,6 +39,7 @@ export function ProductCard({ id, name, price, image_url, stock_quantity, gender
 
   return (
     <motion.div
+      data-product-card
       className="group luxury-glass flex h-full flex-col overflow-hidden rounded-xl transition duration-300 hover:border-primary/45 hover:shadow-primary/10"
       initial={reduceMotion ? false : { opacity: 0, y: 18 }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -47,7 +48,7 @@ export function ProductCard({ id, name, price, image_url, stock_quantity, gender
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Image Container */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-[linear-gradient(145deg,#fffdf9,#e8dccb)] sm:max-h-[26rem]">
+      <div className="relative h-[18rem] shrink-0 overflow-hidden bg-[linear-gradient(145deg,#fffdf9,#e8dccb)] sm:aspect-[4/5] sm:h-auto sm:max-h-[26rem]">
         <motion.img
           src={productImage}
           alt={`${name} - parfum original Elegance Parfum`}
@@ -58,13 +59,13 @@ export function ProductCard({ id, name, price, image_url, stock_quantity, gender
           whileHover={reduceMotion || !canHoverImage ? undefined : { scale: 1.08 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         />
-        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-foreground/25 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-foreground/20 to-transparent sm:h-20" />
         {!isSoldOut && (
-          <Badge className="absolute left-3 top-3 border border-primary/30 bg-white/82 text-primary backdrop-blur-md">
+          <Badge className="absolute left-3 top-3 inline-flex min-h-7 items-center border border-primary/30 bg-white/88 px-2.5 text-[0.65rem] uppercase tracking-[0.08em] text-primary backdrop-blur-md sm:text-xs sm:normal-case sm:tracking-normal">
             Disponible
           </Badge>
         )}
-        <Badge className="absolute right-3 top-3 border border-primary/30 bg-white/82 text-primary backdrop-blur-md">
+        <Badge className="absolute right-3 top-3 inline-flex min-h-7 items-center border border-primary/30 bg-white/88 px-2.5 text-[0.65rem] uppercase tracking-[0.08em] text-primary backdrop-blur-md sm:text-xs sm:normal-case sm:tracking-normal">
           {PRODUCT_GENDER_LABELS[gender]}
         </Badge>
         <div className="absolute bottom-3 right-3 hidden rounded-full border border-primary/20 bg-white/82 px-3 py-1 text-xs text-foreground/80 opacity-0 backdrop-blur-md transition duration-300 group-hover:opacity-100 sm:block">
@@ -80,7 +81,7 @@ export function ProductCard({ id, name, price, image_url, stock_quantity, gender
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col space-y-3 p-4 sm:space-y-4 sm:p-5">
+      <div className="flex min-h-[15rem] flex-1 flex-col space-y-3 p-4 sm:min-h-0 sm:space-y-4 sm:p-5">
         <div>
           <h3 className="mb-2 line-clamp-2 min-h-[2.6rem] text-lg font-semibold leading-snug text-foreground sm:text-xl">
             {name}

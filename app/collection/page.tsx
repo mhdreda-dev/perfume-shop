@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 import { ProductCard } from "@/components/product-card"
 import { Button } from "@/components/ui/button"
 import { MotionPress, MotionReveal } from "@/components/luxury-motion"
+import { ScrollToTop } from "@/components/scroll-to-top"
 import { type ProductGender, withProductGender } from "@/lib/product-gender"
 import { Gem, SlidersHorizontal, Sparkles } from "lucide-react"
 
@@ -148,6 +149,7 @@ export default function Collection() {
         )}
       </main>
 
+      <ScrollToTop />
       <Footer />
     </div>
   )

@@ -8,13 +8,15 @@ type MotionProps = {
   children: ReactNode
   className?: string
   delay?: number
+  "data-product-card"?: boolean
 }
 
-export function MotionReveal({ children, className, delay = 0 }: MotionProps) {
+export function MotionReveal({ children, className, delay = 0, "data-product-card": dataProductCard }: MotionProps) {
   const reduceMotion = useReducedMotion()
 
   return (
     <motion.div
+      data-product-card={dataProductCard || undefined}
       className={className}
       initial={reduceMotion ? false : { opacity: 0, y: 28, filter: "blur(10px)" }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
